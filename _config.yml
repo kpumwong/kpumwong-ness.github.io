@@ -1,6 +1,6 @@
 locale: "en-US"
-title: Strata # Title of your site
-url: "http://yourdomain.com" # the base hostname & protocol for your site
+title: Portfolio - Kasper Birkelund # Title of your site
+url: "http://kasper-birkelund.github.io" # the base hostname & protocol for your site
 baseurl: "" # the subpath of your site, e.g. /blog/
 google_analytics_key: ""
 
@@ -37,7 +37,5 @@ webmaster_verifications:
 # CloudCannon
 
 social_icons:
-  - Facebook
-  - Google Plus
-  - Instagram
+  - Github
   - LinkedIn
