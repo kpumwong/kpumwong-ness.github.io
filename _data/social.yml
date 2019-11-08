@@ -2,3 +2,7 @@
   link: 'https://www.linkedin.com/in/kasperbirkelund/'
   social_icon: LinkedIn
   new_window: true
+- name: Github
+  link: 'https://github.com/Kasper-Birkelund'
+  social_icon: Github
+  new_window: true

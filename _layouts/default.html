@@ -26,14 +26,8 @@
 	<body id="top">
     <header id="header">
       <a href="{{ site.url }}" class="image avatar"><img class="editable" src="/images/avatar.jpg" alt="{{ site.author.name }}"></a>
-      <h1 class="editable"><strong>Kasper Birkelund</strong><br>Data Scientist<br>Copenhagen<br></h1>
-    </header>
-
-    {{ content }}
-
-    <footer id="footer">
-      <p class="editor-link"><a href="cloudcannon:collections/_data/social.yml" class="button"><strong>&#9998;</strong> Update Social Icons</a></p>
-      <ul class="icons">
+	  <h1 class="editable"><strong>Kasper Birkelund</strong></br>Data Scientist</br>Copenhagen</br></h1>
+	  <ul class="icons">
         {% for account in site.data.social %}
 					<li>
 						<a {% if account.new_window %}target="_blank"{% endif %} href="{% include relative-src.html src=account.link %}" {% if account.social_icon %}class="icon fa-{{ account.social_icon | slugify }}"{% endif %}>
@@ -48,6 +42,13 @@
           </a>
         </li>
 		{% endif %}
+    </header>
+
+    {{ content }}
+
+    <footer id="footer">
+      <p class="editor-link"><a href="cloudcannon:collections/_data/social.yml" class="button"><strong>&#9998;</strong> Update Social Icons</a></p>
+
       <!--</ul>
       <ul class="copyright">
           <li>&copy; Untitled</li>
