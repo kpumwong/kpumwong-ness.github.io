@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Welcome
+title: Data Science Portfolio
 ---
 
 Hi, I am Kasper. Aspiring Data Scientist and this is my portfolio!
