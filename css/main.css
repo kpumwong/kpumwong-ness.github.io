@@ -1545,7 +1545,7 @@
 /* Basic */
 
 	body {
-		background: rgb(39, 39, 39, 0.7);
+		background: rgb(39, 39, 39);
 	}
 
 		body.is-loading *, body.is-loading *:before, body.is-loading *:after {
@@ -1573,13 +1573,13 @@
 		-ms-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 		transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 		border-bottom: dotted 1px;
-		color: #49bf9d;
+		color: #b39658;
 		text-decoration: none;
 	}
 
 		a:hover {
 			border-bottom-color: transparent;
-			color: #49bf9d !important;
+			color: #b39658 !important;
 			text-decoration: none;
 		}
 
