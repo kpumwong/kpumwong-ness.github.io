@@ -1545,7 +1545,7 @@
 /* Basic */
 
 	body {
-		background: rgb(39, 39, 39);
+		background: rgb(228, 228, 228);
 	}
 
 		body.is-loading *, body.is-loading *:before, body.is-loading *:after {
