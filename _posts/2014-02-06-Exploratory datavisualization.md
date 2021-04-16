@@ -1106,9 +1106,3 @@ my_plot = recent_grads.sort_values("Women", ascending=False).plot.bar(x='Major',
 
 
 ![png](/images/ED/output_44_0.png)
-
-
-
-```python
-
-```
