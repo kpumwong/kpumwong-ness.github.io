@@ -2,14 +2,11 @@
 layout: post
 title: Data cleaning
 ---
-<img src="/images/fulls/02.jpg" class="fit image">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi cursus fringilla dui. Donec laoreet maximus elit. Mauris ullamcorper condimentum lobortis. Donec maximus, mi vitae iaculis placerat, ligula mi maximus lectus, ac varius mi nulla id neque. Quisque porta eros nisi, eu fringilla urna dictum vitae. 
+<img src="/images/fulls/02.jpg" class="fit image">This project was about preparing weekly sales data from wholesalers selling various products. The main problem with the data was that it came as multiple datasets, one after the other in ONE csv file. Between each dataset there was 2 empty lines and 6 rows with info about the data set.
 
-Vestibulum id metus eu nisl sodales consectetur. Phasellus et ultrices lacus.
+![png](/images/Clean-wrangle/before.png)
 
-Curabitur orci turpis, egestas placerat velit eget, dictum pellentesque ipsum. Suspendisse potenti. Suspendisse ac maximus arcu. Sed ut mattis ex. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum eleifend odio vitae varius aliquam. Quisque ac pretium nisi. Curabitur tempus urna ac ultrices commodo.
+Further the information from the 6 rows between the datasets needed to be kept as columns in the final data set.
 
-Curabitur iaculis est at mattis mattis. Aliquam erat volutpat. Etiam vitae cursus quam. Nunc ultricies nunc non lorem fringilla cursus. Etiam dapibus libero ac turpis accumsan pulvinar. Sed auctor velit eget mi consequat bibendum. Aliquam interdum purus eget metus pretium ullamcorper.
-
-Pellentesque feugiat ex non ligula commodo, eget varius tortor pellentesque. Pellentesque id tortor felis. Cras fringilla ante eget orci laoreet, non consequat urna suscipit. Pellentesque luctus ac nulla vitae porttitor. Proin sed tortor quis magna efficitur efficitur a id leo. Donec efficitur augue et laoreet maximus. Ut semper egestas porttitor. Phasellus sagittis vulputate sem at laoreet.
-
-Sed lobortis urna ut mi volutpat, sit amet euismod sapien tincidunt. Nulla facilisi. Pellentesque quis tempus neque. Mauris dictum ac sapien nec congue. In hac habitasse platea dictumst. Duis id pellentesque nisl. Morbi eget massa magna.
+Latly, the sales for each product is recorded in 6 columns due to 6 KPIs, sales value, sales units, transactions, buying customer, promo sales and average price per sales unit. So the number of columns are 6 x [n of products] plus an aggregate of all the products (first 6 columns).
+This wide format we want to change to a long format so we only have 8 columns in the end. One column for week, one for product names and the 6 KPIs.
