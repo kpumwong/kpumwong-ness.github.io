@@ -108,9 +108,8 @@ for df in all_df.keys():
 stacked_df.shape
 ```
 
-
-```python
 *OUTPUT:*
+```python
 (2298296, 13)
 ```
 
