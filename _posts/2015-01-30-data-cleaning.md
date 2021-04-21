@@ -1,24 +1,24 @@
 ---
 layout: post
-title: Data cleaning
+title: Advanced data cleaning
 ---
-<img src="/images/fulls/02.jpg" class="fit image">This project was about preparing weekly sales data from wholesalers selling various products. The main problem with the data was that it came as multiple datasets, one after the other in ONE csv file. As seen below there ar 2 empty lines between each dataset and 6 rows with info about the next data set.
+<img src="/images/fulls/02.jpg" class="fit image">This project was about preparing weekly sales data from wholesalers selling various products. The main problem with the data was that it came as multiple datasets, one after the other in ONE csv file. As seen below there are 2 empty lines between each dataset and 6 rows with info about the next dataset.
 
 ![png](/images/Clean-wrangle/before.png)
 
-Further, the information from the six rows between the datasets needed to be kept as columns in the final data set. Actually, the first line is not interesting so we can skip that one. So only from the next five rows.
+Further, the information from the 5 out of the 6 rows between the datasets needed to be kept as columns in the final dataset. (The first line is not interesting so that could be skipped)
 
-Lastly, the sales for each product is recorded in 6 columns due to 6 KPIs, sales value, sales units, transactions, buying customer, promo sales and average price per sales unit. So the number of columns are 6 x [n of products] plus an aggregate of all the products (first 6 columns).
-This wide format we want to change to a long format so we only have 8 columns in the end. One column for week, one for product names and the 6 KPIs. Notice there are two header rows (multiindex) where the first contains the product info and the second contains the KPI info.
+Lastly, the sales for each product is recorded in 6 columns due to 6 KPIs, sales value, sales units, transactions, buying customer, promo sales and average price per sales unit. So the number of columns are 6 x [n of products] plus an aggregate of all the products ("All products", first 6 columns).
+This wide format we want to change to a long format so we only have 13 columns in the end. One column for date info (Time), one for product names, the 6 KPIs and the 5 columns extracted from the headlines. Notice there are two header rows (multiindex) below the headlines, where the first contains the product info and the second contains the KPI info.
 
-So the approach I took to go from this csv containing nultiple datasets to one big dataset in long format was the following:
+The approach I took to go from this csv containing multiple datasets to one big dataset in long format, was the following:
 
-1. Locate each dataset (dataframe) and save them seperately in a dictionnary.
+1. Locate each dataset and save them seperately as dataframes in a dictionnary.
 2. Extract the info from the five headlines in each dataframe.
 3. Concat the header info into one row and melt the data into long format for each dataframe.
-4. Stack all the dataframes into the final dataset.
+4. Stack all the dataframes into one big final dataset.
 
-First, if the any KPI is missing it means there are no sales for that specific product in that given week. So let us replace these with 0. This also helps us locate where each new dataset begins, as all other values in the first column will be header or date info.
+Firstly, if any value is missing it means there are no sales for that specific product in that given week. So let us replace these with 0. This also helps us to locate where each new dataset begins, as all other values in the first column (col_0) will be either headlines or date info.
 
 ```python
 df = df.fillna(0)
@@ -30,9 +30,9 @@ Next, we can locate all the row indexes where the first column (col_0) is 0:
 indexes = df.index[df['col_0'] == 0].tolist()[::2]
 ```
 
-"::2" means we take every other value in the list. Remember there are 2 empty rows between each dataset in the csv file. We just need one of them to be able to navigate.
+When slicing the list with "::2", we take every other value in the list. Remember there are 2 empty rows between each dataset in the csv file. We just need one of them to be able to navigate.
 
-Now we can slice the csv files based on these row indexes and save each data set to a dictionnary.
+Now we can slice the csv files based on these row indexes and save each dataframe to a dictionnary.
 
 ```python
 all_df = {}
@@ -47,7 +47,7 @@ for index in indexes[1:]:
 ```
 We loop through the index list created before and keep track the index used in the former loop, so we are sure we also move the starting row for the next dataframe (index_before).
 
-For each dataframe we need to save the info for the five headlines every time as these may change. We loop through each dataframe in the dictionnary and save the text after the ":" to a column named the same as the text before the ":".
+For each dataframe we need to save the info for the 5 headlines every time as these may change. We loop through each dataframe in the dictionnary and save the text after the ":" to a column named the same as the text before the ":".
 
 ```python
 for df in all_df.keys():
@@ -70,14 +70,14 @@ for df in all_df.keys():
     # Drop second row as it has been copied to the column names
     all_df[df] = all_df[df].drop(all_df[df].index[1])
 ```
-The last three sections above does a bit of house keeping to make sure we can get rid of the multiindex in the column names in the next part. We want the column names for these five new columns to be in the first level of the mulitiindex.
+The last three sections above does a bit of house keeping to make sure we can get rid of the multiindex in the column names in the next part. We want the column names for these 5 new columns to be in the first level of the mulitiindex.
 
 Now we are ready to change the format of all the dataframes from wide to long format by using the pd.melt() function.
-We dont want to melt the five new columns as these contain info about each entire dataset, so we save these in a seperate dataframe. This is also so we can fix the multiindex in the rest of the datasat.
-We concat the two column rows into one with "XXXX" in between so we have something to split on later. Then we melt everything in each dataframe, but keep the Time column intact.
+We dont want to melt the 5 new columns as these contain info about each entire dataframe, so we save these in a seperate dataframe. This is also so we can fix the multiindex in the rest of the dataframe.
+We concat the two column rows into one with "XXXX" in between so we have something to split on later. Then we melt everything in each dataframe, but keep the "Time" column intact.
 
 The product info and KPIs are now stored as column values in the "variable" column generated by the melt function.
-We split this column using the "XXXX" into two columns called "product" and "column". Now we can pivot the data so the KPI info in the "column" column becomes our header. Finally we add the 5 columns we seperate in the beginning of the loop.
+We split this column using the "XXXX" into two columns called "product" and "column". Now we can pivot the data so the KPI info in the "column" column becomes our header. Finally, we add the 5 columns we seperated in the beginning of the loop.
 
 
 ```python
@@ -108,9 +108,9 @@ for df in all_df.keys():
         df_melt[column_name] = value
     all_df[df] = df_melt
 ```
-The melt function is usually able to handle multiindexes, so it is not necessary to apply an ad hoc solution using "XXXX" to split on etc. However, as I recall it cause me some problems in this case, so I had to be creative.
+The melt function is usually able to handle multiindexes, so it is not necessary to apply an ad hoc solution using "XXXX" to split on etc. However, as I recall it caused me some problems in this case, so I had to be creative.
 
-Finally, we can loop through all the dataframes in the dictionnary and stack them on top of eachother in one big dataset with about 2.3 million rows and 13 columns.
+Finally, we loop through all the dataframes in the dictionnary and stack them on top of eachother into one big dataframe with about 2.3 million rows and 13 columns.
 
 ```python
 # Stacking all the dataframes into one big dataframe
@@ -120,5 +120,7 @@ for df in all_df.keys():
         continue
     stacked_df = pd.concat([stacked_df, all_df[df]])
 ```
+
+Screeshot of the final dataset in Dataiku:
 
 ![png](/images/Clean-wrangle/after.png)
