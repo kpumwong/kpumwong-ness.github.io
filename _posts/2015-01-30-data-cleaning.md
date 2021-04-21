@@ -6,6 +6,8 @@ title: Advanced data cleaning
 
 ![png](/images/Clean-wrangle/before.png)
 
+(You may need to scroll horizontally to see everything)
+
 Further, the information from the 5 out of the 6 rows between the datasets needed to be kept as columns in the final dataset. (The first line is not interesting so that could be skipped)
 
 Lastly, the sales for each product is recorded in 6 columns due to 6 KPIs, sales value, sales units, transactions, buying customer, promo sales and average price per sales unit. So the number of columns are 6 x [n of products] plus an aggregate of all the products ("All products", first 6 columns).
