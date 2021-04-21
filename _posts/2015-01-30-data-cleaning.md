@@ -124,3 +124,5 @@ for df in all_df.keys():
 Screeshot of the final dataset in Dataiku:
 
 ![png](/images/Clean-wrangle/after.png)
+
+Further work could be to use some regex to split the info in the "product" column into multiple new columns like product_id, count_per_pack, package_type, brand/description and packsize.
