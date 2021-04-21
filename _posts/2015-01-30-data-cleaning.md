@@ -2,11 +2,11 @@
 layout: post
 title: Advanced data cleaning
 ---
-<img src="/images/fulls/02.jpg" class="fit image">This project was about preparing weekly sales data from wholesalers selling various products. The main problem with the data was that it came as multiple datasets, one after the other in ONE csv file. As seen below there are 2 empty lines between each dataset and 6 rows with info about the next dataset.
+<img src="/images/fulls/02.jpg" class="fit image">This project was about preparing weekly sales data from wholesalers selling various products. The main problem with the data was that it came as multiple datasets, one after the other in ONE csv file.
 
 ![png](/images/Clean-wrangle/before.png)
 
-(You may need to scroll horizontally to see everything)
+As seen above there are 2 empty lines between each dataset and 6 rows with info about the next dataset.
 
 Further, the information from the 5 out of the 6 rows between the datasets needed to be kept as columns in the final dataset. (The first line is not interesting so that could be skipped)
 
