@@ -6,12 +6,14 @@ title: Advanced data cleaning
 
 ![png](/images/Clean-wrangle/before.png)
 
-As seen above there are 2 empty lines between each dataset and 6 rows with info about the next dataset.
+## What needs to be done?
 
-Further, the information from the 5 out of the 6 rows between the datasets needed to be kept as columns in the final dataset. (The first line is not interesting so that could be skipped)
+As seen above there are 2 empty lines between each dataset and 6 rows (headlines) with info about the next dataset. The information from 5 out of these 6 rows needed to be extrated and kept as columns in the final dataset. (The first headline is not interesting, so that could be skipped)
 
-Lastly, the sales for each product is recorded in 6 columns due to 6 KPIs, sales value, sales units, transactions, buying customer, promo sales and average price per sales unit. So the number of columns are 6 x [n of products] plus an aggregate of all the products ("All products", first 6 columns).
-This wide format we want to change to a long format so we only have 13 columns in the end. One column for date info (Time), one for product names, the 6 KPIs and the 5 columns extracted from the headlines. Notice there are two header rows (multiindex) below the headlines, where the first contains the product info and the second contains the KPI info.
+The sales for each product is recorded in 6 corresponding to 6 KPIs; Sales value, Sales units, Transactions, Buying customer, Promo sales and Average price per sales unit. So the number of columns are 6 x [n of products] plus an aggregate of all the products ("All products", first 6 columns after the Time column).
+We want to change this "wide" format into a long format so we only have 13 columns in the end. One column for date info (Time), one for product info, the 6 KPIs and the 5 columns extracted from the headlines. Notice there are two header rows after the headlines (multiindex), where the first contains the product info and the second contains the KPI info.
+
+## The approach
 
 The approach I took to go from this csv containing multiple datasets to one big dataset in long format, was the following:
 
@@ -19,6 +21,8 @@ The approach I took to go from this csv containing multiple datasets to one big 
 2. Extract the info from the five headlines in each dataframe.
 3. Concat the header info into one row and melt the data into long format for each dataframe.
 4. Stack all the dataframes into one big final dataset.
+
+## Let's begin
 
 Firstly, if any value is missing it means there are no sales for that specific product in that given week. So let us replace these with 0. This also helps us to locate where each new dataset begins, as all other values in the first column (col_0) will be either headlines or date info.
 
@@ -122,6 +126,8 @@ for df in all_df.keys():
         continue
     stacked_df = pd.concat([stacked_df, all_df[df]])
 ```
+
+## The result
 
 Screeshot of the final dataset in Dataiku:
 
