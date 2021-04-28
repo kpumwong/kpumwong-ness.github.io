@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Mapping with Regex
+title: Remapping encoded questionnaire
 ---
 <img src="/images/fulls/01.jpg" class="fit image">This is an example of mapping different values in the results of an encoded questionnaire (4237 rows and 194 columns). In stead of the actualy brand name it only states brand_0014 for example. Also, the answers based on some scale only has numbers where we for example want "Adults over 18", "Teenagers", etc. in stead.
 
