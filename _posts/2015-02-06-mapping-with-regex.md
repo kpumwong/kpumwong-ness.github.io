@@ -12,8 +12,8 @@ Below you can see a couple of screenshots of the encoded data set:
 ![png](/images/Mapping-with-Regex/before1.png)
 ![png](/images/Mapping-with-Regex/before2.png)
 
-First we perform a couple of simple replacements on a some of the the columns refering to the first standard questions.
-Also, we remove all the curly brackets and underscores from the dataset.
+First I perform a couple of simple replacements on a some of the the columns refering to the first standard questions.
+Also, I remove all the curly brackets from the dataset. I also want to remove the underscores, but that has to be done after the mapping of the brand names.
 
 ```python
 df_map.replace({'{':'', '}':''}, regex=True, inplace=True)
@@ -23,7 +23,7 @@ df_map['AGEBANDS'].replace({'isinrange_':''}, regex=True, inplace=True)
 df_map['CHIEF_FMCG'].replace({'_1':'Almost all the time', '_2':'Half or more than half the time'}, regex=True, inplace=True)
 ```
 
-Next we create a dictionary determining how the brand codes should be mapped. This could also have been stored in a seperate mapping dataset, but it was ok to solve the problem like this in this case.
+Next I create a dictionary determining how the brand codes should be mapped. This could also have been stored in a seperate mapping dataset, but it was ok to solve the problem like this in this case.
 The dictionary is reality bigger than the example below, but this is to keep business sensitive data hidden. Also, the brand names has been changed to something imaginative.
 
 ```python
@@ -36,13 +36,13 @@ mapping_dict = {'brands_1036':'Aba',
 'brands_1050':'Tapern',
 ```
 
-Now we can use this dictionary to map the brand codes in the column names:
+Now I can use this dictionary to map the brand codes in the column names:
 
 ```python
 df_map.columns = pd.Series(df_map.columns.tolist()).replace({'{':'', '}':'','Brands':'brands', '.slice':''}, regex=True).replace(mapping_dict, regex=True)
 ```
 
-And here we map all the brand codes in the values of the columns:
+And here I map all the brand codes in the values of the columns:
 
 ```python
 for col in df_map.columns:
@@ -50,7 +50,7 @@ for col in df_map.columns:
         df_map[col] = df_map[col].replace(mapping_dict, regex=True)
 ```
 
-Since the mapping dictionary was created with underscores in the brand codes (eg. brands_0024), we had to wait with removing these until now:
+Since the mapping dictionary was created with underscores in the brand codes as they are recorded in the data set (eg. brands_0024), I had to wait with removing these until now:
 
 ```python
 df_map.replace({'_':''}, regex=True, inplace=True)
@@ -76,7 +76,7 @@ consideration = {'1':'My first choice',
 ```
 There were about 10 different areas in total.
 
-Finally we can loop over all the columns and different topics and map the values accordingly:
+Finally I can loop over all the columns and different topics and map the values accordingly:
 
 ```python
 topics = ['familiarity_time', 'consideration', 'unique', 'meets_needs', 'innovative', 'esteem', 'priceworth', 'tbca', 'hhsize', 'income', 'region', 'chief', 'cat_usage', 'hhcomp']
