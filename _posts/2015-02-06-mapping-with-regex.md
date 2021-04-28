@@ -23,7 +23,7 @@ df_map['AGEBANDS'].replace({'isinrange_':''}, regex=True, inplace=True)
 df_map['CHIEF_FMCG'].replace({'_1':'Almost all the time', '_2':'Half or more than half the time'}, regex=True, inplace=True)
 ```
 
-Next we create a dictionarey determining how the brand codes should be mapped. This could also have been stored in a seperate mapping dataset, but it was ok to solve the problem like this in this case.
+Next we create a dictionary determining how the brand codes should be mapped. This could also have been stored in a seperate mapping dataset, but it was ok to solve the problem like this in this case.
 The dictionary is reality bigger than the example below, but this is to keep business sensitive data hidden. Also, the brand names has been changed to something imaginative.
 
 ```python
