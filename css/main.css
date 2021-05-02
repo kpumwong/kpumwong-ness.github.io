@@ -2469,7 +2469,7 @@
 		position: fixed;
 		text-align: right;
 		top: 0;
-		width: 35%;
+		width: 25%;
 	}
 
 		#header strong, #header b {
@@ -2852,7 +2852,7 @@
 
 			#header {
 				padding: 6em 3em 3em 3em;
-				width: 30%;
+				width: 25%;
 			}
 
 				#header h1 {
