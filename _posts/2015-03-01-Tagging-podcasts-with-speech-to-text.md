@@ -112,7 +112,7 @@ for letter, count in counted_words.most_common(10):
 list(zip(words, counts))
 ```
 
-![png](/images/podcast-tags/score1.png)
+![png](/images/podcast-tags/score.png)
 
 As we can see it corresponds well with the wordcloud above.
 
