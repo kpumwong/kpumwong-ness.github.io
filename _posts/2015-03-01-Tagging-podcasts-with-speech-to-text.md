@@ -11,9 +11,21 @@ The podcast used in this project is from a show called Clockwise. The title was:
 
 For this example we will use the following libraries:
 
+```python
+import dataiku
+import matplotlib.pyplot as plt
+from IPython.display import Audio
+import speech_recognition as sr
+import pocketsphinx
+from wordcloud import WordCloud, STOPWORDS
+import collections
+from rake_nltk import Rake
+import operator
+```
+
 As a side note, I am using Dataiku to organise the project. I like to use Dataiku as my main platform for all kinds of data projects. By making a "managed folder" Dataiku can handle any kind of data type and you can access these files any way you like with a python recipe.
 
-![png](/images/Mapping-with-Regex/before1.png)
+![png](/images/podcast-tags/flow.png)
 
 ## Setting up the file path
 
@@ -32,7 +44,7 @@ Using the IPython.display.Audio library you can easily play audio from inside th
 ```python
 Audio(data=file_path)
 ```
-![png](/images/Mapping-with-Regex/before1.png)
+![png](/images/podcast-tags/player.png)
 
 ## Ripping text from audio file
 
@@ -51,7 +63,7 @@ with sr.AudioFile(file_path) as source:
 ```
 The text looks like this:
 
-![png](/images/Mapping-with-Regex/before1.png)
+![png](/images/podcast-tags/text.png)
 
 From listening to the audio and reading the ripped output, it is clear that the recognition of the words is not impressive. For faster and better performance it is possible to use multiple online ML tools by Google and Microsoft eg., if you have a license to use their API. However, to show the concept the PocketSphinx should do fine.
 
@@ -67,7 +79,7 @@ plt.axis("off")
 plt.tight_layout(pad=0)
 plt.show()
 ```
-![png](/images/Mapping-with-Regex/before1.png)
+![png](/images/podcast-tags/wc1.png)
 
 The most common words are bigger in size and seems to be one, apple, back, way, remote etc. From the title of the podcast "Apple" and "remote" possible makes good sense. Even though we have filtered out many stopwords most of the other words seem quite generic.
 
@@ -79,7 +91,7 @@ stopwords_new = list(STOPWORDS) + ['back', 'clockwise']
 
 And the wordcloud now looks like this:
 
-![png](/images/Mapping-with-Regex/before1.png)
+![png](/images/podcast-tags/wc2.png)
 
 To get the list of top word let us try and find the most used ones in another way:
 
@@ -98,7 +110,7 @@ for letter, count in counted_words.most_common(10):
 list(zip(words, counts))
 ```
 
-![png](/images/Mapping-with-Regex/before1.png)
+![png](/images/podcast-tags/score1.png)
 
 As we can see it corresponds well with the wordcloud above.
 
@@ -118,22 +130,6 @@ top_tags = rake.get_ranked_phrases_with_scores()
 top_tags[:10]
 ```
 
-![png](/images/Mapping-with-Regex/before1.png)
+![png](/images/podcast-tags/score2.png)
 
 This result is obviously not the most useful. Since the text is interpreted from spoken word, and that there were multiple people speaking, this algorithm might have some difficulties working properly. With a more advanced setup, it could be interesting to test if it is possibe to recognise the different speakers from eachother and see if that could help the algorithm by looking at their sentences seperately.
-
-```python
-
-```
-
-```python
-
-```
-
-```python
-
-```
-
-```python
-
-```
