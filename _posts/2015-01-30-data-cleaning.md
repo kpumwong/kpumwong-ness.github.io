@@ -3,7 +3,7 @@ layout: post
 title: Advanced data cleaning
 ---
 <!--<img src="/images/fulls/01.jpg" class="fit image">-->
-This project was about preparing weekly sales data from wholesalers selling various products. The main problem with the data was that it came as multiple datasets, one after the other in ONE csv file.
+This project was about preparing weekly sales data from wholesalers selling various products. The main problem was that the data came as multiple datasets inside ONE csv file.
 
 ## What needs to be done?
 

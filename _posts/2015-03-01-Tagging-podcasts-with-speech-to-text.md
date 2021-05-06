@@ -2,6 +2,8 @@
 layout: post
 title: Tagging podcasts with speech-to-text
 ---
+<!--<img src="/images/fulls/01.jpg" class="fit image">-->
+This project aims to investigate tagging of podcasts by using a speech-to-text algorithm and extracting keywords from the text file.
 
 ## Introduction
 
