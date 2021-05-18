@@ -182,21 +182,16 @@ if __name__ == '__main__':
 
 
 Test with original repertoire:
-![](/images/Music-with-LSTM/Original_test.mp3)
+<iframe width="300" height="50" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1050924694%3Fsecret_token%3Ds-J4cg2pvZZyR&color=%23333333&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/kasperbirk" title="Kasper Birk" target="_blank" style="color: #cccccc; text-decoration: none;">Kasper Birk</a> · <a href="https://soundcloud.com/kasperbirk/original-test/s-J4cg2pvZZyR" title="Original Test" target="_blank" style="color: #cccccc; text-decoration: none;">Original Test</a></div>
 
 
 First try:
-![](/images/Music-with-LSTM/First_try.mp3)
+<iframe width="300" height="50" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1050924712%3Fsecret_token%3Ds-9wgSNAXuuoC&color=%23333333&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/kasperbirk" title="Kasper Birk" target="_blank" style="color: #cccccc; text-decoration: none;">Kasper Birk</a> · <a href="https://soundcloud.com/kasperbirk/first-try/s-9wgSNAXuuoC" title="First Try" target="_blank" style="color: #cccccc; text-decoration: none;">First Try</a></div>
 
 
 Best try:
-![](/images/Music-with-LSTM/Best_try.mp3)
+<iframe width="300" height="50" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1050924721%3Fsecret_token%3Ds-wDE93NO2Cfk&color=%23333333&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/kasperbirk" title="Kasper Birk" target="_blank" style="color: #cccccc; text-decoration: none;">Kasper Birk</a> · <a href="https://soundcloud.com/kasperbirk/best-try/s-wDE93NO2Cfk" title="Best Try" target="_blank" style="color: #cccccc; text-decoration: none;">Best Try</a></div>
 
 
 ## Future work
 
-
-
-
-
-[[embed url=http://www.youtube.com/watch?v=6YbBmqUnoQM]]
