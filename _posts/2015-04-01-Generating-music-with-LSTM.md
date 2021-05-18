@@ -3,35 +3,45 @@ layout: post
 title: Generating music with an LSTM algorithm
 ---
 <!--<img src="/images/fulls/01.jpg" class="fit image">-->
-This was the final project of the Growth Tribe course I finished in October 2020. I wanted to see if I could create  music ideas based on only music from the Beatles with an LSTM network.
+This was the final project of the Growth Tribe course I finished in October 2020. I wanted to see if I could get and LSTM network to create music ideas on piano with midi, based only on music from the Beatles.
 
-The objective was to show that we were able to find and utilize some machine learning code with our own dataset and/or tweak the hyper parameters. We were not expected to build a neural network from ground up.
+## Introduction
 
-As a musician/composer my self I was interested in having an AI help me compose songs more efficiently. However, it seemed no one really was focusing on this in any articles I could find. The aim of all projects I could find was to try to make a finished peice of music that sounds good in it self and original, which we are still fairly far from achieving.
+The objective was to show that we were able to utilize some machine learning code with our own dataset and/or tweak the hyper parameters. We were not expected to build a neural network from ground up.
 
-I wanted to make an AI that could make simple, but unique pieces of music on the most basic level on piano. Only chords and melody showcasing a verse and a chorus. That way it could be very useful for composers as an idea generation tool. Kinda of like having a friend playing one original idea after the other on the piano, and if you liked one of the ideas you could use that as a basis for a new song.
+As a musician/composer my self, I was interested in having an AI help me compose songs more efficiently. However, it seemed no one was really focusing on this in any articles I could find. The aim of all projects I could find, was to try to make a finished piece of original music that sounded good in it self, which we are still fairly far from achieving.
 
-I found [this Medium article](https://towardsdatascience.com/how-to-generate-music-using-a-lstm-neural-network-in-keras-68786834d4c5) by Sigurður Skúli, who used an LSTM network to create original peices of music where the network was trained on a repertoire of midi music from the computer game Final Fantasy.
+I wanted to make an AI that could make simple, but unique pieces of music on the most basic level on piano. Only chords and melody showcasing a verse and a chorus. That way it could be very useful for composers as an idea generation tool. Kind of like having a friend playing one original idea after the other on the piano, and if you liked one of the ideas you could use that as a basis for a new song.
 
+I found [this Medium article](https://towardsdatascience.com/how-to-generate-music-using-a-lstm-neural-network-in-keras-68786834d4c5) by Sigurður Skúli, who used an LSTM network to create original peices of music, where the network was trained on a repertoire of midi music from the computer game Final Fantasy.
+
+Here is an example of a song in the training data set. In the picture you can see the notes are not seperated into chords and melody the same way as if it was a more standard pop song where the melody was supposed to be sung by a singer. It is a bit more like classical music where everything is mixed together.
 ![png](/images/Music-with-LSTM/FF_example.png)
+
+It sounds like this:
 <iframe width="500" height="100" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1050924700%3Fsecret_token%3Ds-dqCJ0fHCNMN&color=%23333333&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/kasperbirk" title="Kasper Birk" target="_blank" style="color: #cccccc; text-decoration: none;">Kasper Birk</a> · <a href="https://soundcloud.com/kasperbirk/original/s-dqCJ0fHCNMN" title="Original" target="_blank" style="color: #cccccc; text-decoration: none;">Original</a></div>
 
-My idea was to train the network on all time pop songs, which I recorded my self in my music program in a very specific wasy where the chords where in the lower notes and the melody was by it self in the higher notes. No rythm and breaking up the chords were added:
+My idea was to train the network only on Beatles songs, which I would record my self in my music program in a very specific way where the chords were in the lower notes and the melody was by it self in the higher notes. No rythm and breaking up the chords were added.
 
+The midi files all look more like this example which is the song Imagine:
 ![png](/images/Music-with-LSTM/Pop_example.png)
+
+You can clearly see the melody is seperated from the chords.
+
+It sounds like this:
 <iframe width="500" height="100" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1050924739%3Fsecret_token%3Ds-WpmqBwRvkcW&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/kasperbirk" title="Kasper Birk" target="_blank" style="color: #cccccc; text-decoration: none;">Kasper Birk</a> · <a href="https://soundcloud.com/kasperbirk/basic/s-WpmqBwRvkcW" title="Basic" target="_blank" style="color: #cccccc; text-decoration: none;">Basic</a></div>
 
-In it self this sounds very boring, but if original pieces of music in this format could be generated on command with an AI, it could be very useful for composing.
-
+In it self this sounds very boring, but if multiple original pieces of music like this could be generated in a few minutes, it could be very useful for composing.
+That way the composer could use it to quickly get ideas for new compositions. Perhaps by trying to play the chords him self on the piano or guitar and sing the melody with some lyrics.
 
 ## Google Colab and TPU computing power
 
-For running the algorithm I used Google colab to make use of Google's free TPU computing power, which is even faster than using a GPU.
+For running the algorithm, I used Google colab to make use of Google's free TPU computing power, which is even faster than using a GPU.
 
 ## Training the LSTM network
 
 Below is the code from the Medium article. I will breifly explain what each part does.
-As yuo can see the network is built with keras.
+As you can see the network is built with keras/tensorflow.
 
 ```python
 import glob
