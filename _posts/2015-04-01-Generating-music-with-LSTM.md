@@ -66,7 +66,7 @@ def train_network():
     train(model, network_input, network_output)
 ```
 
-The get_notes function basically prepares the midi data, so it has a format that can be used in the network.
+The get_notes function basically arranges the midi data into an array so we can easier work with it.
 A special library (music21) is used to interpret the midi files and extract the notes. Midi files contain much more information like velocity of the notes, duration, sustain, and more. But only the pitch of the notes are extracted in this example. If more of these features were extracted better music could probably be generated.
 
 ```python
@@ -99,6 +99,7 @@ def get_notes():
     return notes
 ```
 
+Next sequences of the music is prepared with a certain length (sequence_length). This determines how far back the LSTM network will look to try and predict the next note to play.
 
 ```python
 def prepare_sequences(notes, n_vocab):
@@ -133,6 +134,11 @@ def prepare_sequences(notes, n_vocab):
     return (network_input, network_output)
 ```
 
+In create_network the model is simply created and returned in a variable.
+We can se the model is sequential and has 3 LSTM layers with an output dimentionality of 512 units.
+Afterwards there are 2 sets of batch normalization, dropout, dense and activation layers. The batch nomrmalization and dropout layers aim to speed up the learning and add some regularization to prevent over fitting. The dense layers are neural networks with 256 neurons using relu activation function in the first one and n_vocab neurons in the last one using softmax.
+n_vocab is the number of unique notes in the training set, which makes sense to have this amount to choose from when the network attempts to predict the next note.
+
 ```python
 def create_network(network_input, n_vocab):
     """ create the structure of the neural network """
@@ -158,6 +164,10 @@ def create_network(network_input, n_vocab):
     return model
 ```
 
+The train function below starts the actual training with a certain number of epochs and batch size that can be adjusted.
+Note that this function generates a file with weights after each epoch. This can be used to generate music with afterwards when using the trained network.
+
+
 ```python
 def train(model, network_input, network_output):
     """ train the neural network """
@@ -179,19 +189,30 @@ if __name__ == '__main__':
 
 ## Generating music with the trained network
 
+My apporach was to get the code working and generate a song using the training data the author has been using from Final Fantasy. The I wanted to record a number of Beatles songs myself in the special basic format I wanted on the piano, to use as the training data. Then I wanted to see if I was able to generate an original composition that sounded a bit like a Beatles song.
+It turned out to be quite time consuming to record all these songs, but I was able to record around 30 which was ok the prove the concept and to show that I was able to understand how to navigate and use the code.
 
+The first audio clip is just the result from training the network and generating a piano peice on the same data as the author used.
 
-Test with original repertoire:
+Test with original training data:
 <iframe width="500" height="100" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1050924694%3Fsecret_token%3Ds-J4cg2pvZZyR&color=%23333333&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/kasperbirk" title="Kasper Birk" target="_blank" style="color: #cccccc; text-decoration: none;">Kasper Birk</a> · <a href="https://soundcloud.com/kasperbirk/original-test/s-J4cg2pvZZyR" title="Original Test" target="_blank" style="color: #cccccc; text-decoration: none;">Original Test</a></div>
 
+When using my own data I had some trouble getting the network to train properly due to the smaller data set. As you can hear the first result did not amount to much.
 
 First try:
 <iframe width="500" height="100" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1050924712%3Fsecret_token%3Ds-9wgSNAXuuoC&color=%23333333&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/kasperbirk" title="Kasper Birk" target="_blank" style="color: #cccccc; text-decoration: none;">Kasper Birk</a> · <a href="https://soundcloud.com/kasperbirk/first-try/s-9wgSNAXuuoC" title="First Try" target="_blank" style="color: #cccccc; text-decoration: none;">First Try</a></div>
 
+After fiddeling with the hyper parameters especially sequence length and batch size I was able to generate the piece below.
 
 Best try:
 <iframe width="500" height="100" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1050924721%3Fsecret_token%3Ds-wDE93NO2Cfk&color=%23333333&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/kasperbirk" title="Kasper Birk" target="_blank" style="color: #cccccc; text-decoration: none;">Kasper Birk</a> · <a href="https://soundcloud.com/kasperbirk/best-try/s-wDE93NO2Cfk" title="Best Try" target="_blank" style="color: #cccccc; text-decoration: none;">Best Try</a></div>
 
+I was happy to get it working and to hear that my own data was being usied. However it is pretty obvious that the network is over fitting the data, and it sounds more or less like a copy of the Beatles song "Something".
 
 ## Future work
 
+To test out my idea properly I would need way more data. My guess would be that I would need 3-500 songs recorded this way.
+
+Also, as the author suggests him self it would be very interesting to try and extract more information from the midi files like duration and velocity of the notes and pauses.
+
+Lastly, LSTM network has been out matched by transformer network in recent times. When the data set is comprehensive enough, it would be nice to try and upgrade the model to this new standard.
