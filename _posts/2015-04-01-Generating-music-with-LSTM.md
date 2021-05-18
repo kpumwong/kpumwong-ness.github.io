@@ -19,7 +19,7 @@ I found [this Medium article](https://towardsdatascience.com/how-to-generate-mus
 My idea was to train the network on all time pop songs, which I recorded my self in my music program in a very specific wasy where the chords where in the lower notes and the melody was by it self in the higher notes. No rythm and breaking up the chords were added:
 
 ![png](/images/Music-with-LSTM/Pop_example.png)
-![](/images/Music-with-LSTM/Basic.mp3)
+<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1050924739%3Fsecret_token%3Ds-WpmqBwRvkcW&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/kasperbirk" title="Kasper Birk" target="_blank" style="color: #cccccc; text-decoration: none;">Kasper Birk</a> · <a href="https://soundcloud.com/kasperbirk/basic/s-WpmqBwRvkcW" title="Basic" target="_blank" style="color: #cccccc; text-decoration: none;">Basic</a></div>
 
 In it self this sounds very boring, but if original pieces of music in this format could be generated on command with an AI, it could be very useful for composing.
 
