@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Generating music with an LSTM algorithm
+title: Generating music with an RNN
 ---
 <!--<img src="/images/fulls/01.jpg" class="fit image">-->
 This was the final project of the Growth Tribe course I finished in October 2020. I wanted to see if I could get and LSTM network to create music ideas on piano with midi, based only on music from the Beatles.
