@@ -96,7 +96,7 @@ However, working with blockchain data I might have to get used to doing more in 
 
 A quick copy past into Excel to do the cumulative sum and plot gives this:
 
-
+![png](/images/Coding-challenge/cumulative.png)
 
 I am not 100% sure this is correct, as my understanding of the UTXO-set is that it is continuously being changed to reflect the current state of the blockchain.
 So to get the the exact amount it circulating BTC at an earlier point in time you would have to have a snapshot of the UTXO-set at that time?
