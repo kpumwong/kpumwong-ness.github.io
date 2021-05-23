@@ -104,6 +104,303 @@ So to get the the exact amount it circulating BTC at an earlier point in time yo
 I assume the BigQuery bitcoin UTXO-set is only the current one?
 
 
-
 # Part 2
 
+## Event detection
+
+### Setup
+
+This challenge comprises of 3 timeseries indcators for Bitcoin on a daily level. The average transaction fees, the number of active addresses and the SOPR. I will plot these againt the bitcoin price, flag outliers and discuss.
+
+I loaded the data into Dataiku and started up a notebook.
+Below is the libraries I am using and the custom code to load the datasets into pandas dataframes:
+
+```python
+import dataiku
+from dataiku import pandasutils as pdu
+import pandas as pd
+from matplotlib import pyplot as plt
+from datetime import datetime
+
+```
+
+```python
+# Custom Dataiku code to load datasets into pandas dataframes:
+
+mydataset = dataiku.Dataset("btc_active_addresses")
+adr = mydataset.get_dataframe()
+
+mydataset = dataiku.Dataset("btc_fees_mean")
+fees = mydataset.get_dataframe()
+
+mydataset = dataiku.Dataset("btc_sopr")
+sopr = mydataset.get_dataframe()
+
+mydataset = dataiku.Dataset("btc_price")
+price = mydataset.get_dataframe()
+
+```
+
+Let us start with merge the datasets together in to one and parse the date to stadard format:
+
+```python
+df = adr.merge(fees, how='left').merge(sopr, 'left')
+df['date'] = pd.to_datetime(df['date'])
+```
+
+![png](/images/Coding-challenge/df.png)
+
+Now let's add BTC historical closing prices to the dataset so we can use that for plotting. This was a dataset I downloaded and imported to Dataiku as well:
+
+![png](/images/Coding-challenge/price.png)
+
+```python
+price['date'] = pd.to_datetime(price['Date'])
+price = price.sort_values('Date')
+df = df.merge(price[['date', 'Close']], 'left')
+```
+![png](/images/Coding-challenge/add_price.png)
+
+Then I do a quick check on the datatypes and basic statistic:
+
+```python
+df.info()
+```
+
+![png](/images/Coding-challenge/info.png)
+
+```python
+df.describe()
+```
+![png](/images/Coding-challenge/describe.png)
+
+### The SOPR indicator
+In the following I will plot the three different indicators against the BTC price and create a number of event detection filters, which I will display in the graph with colors. Starting with the SOPR indicator.
+
+The SOPR indicator stands for Spent Output Profit Ratio. It is the realized value divided by the value at creation of the output.
+Let us try and plot it.
+
+```python
+fig, ax = plt.subplots(figsize=(16,10))
+
+# Plot BTC price, and set tick labels to the same color
+ax.plot(df['date'], df['Close'], color='grey', linestyle='--')
+ax.tick_params(axis='y', labelcolor='grey')
+
+# Generate a new Axes instance, on the twin-X axes (same position)
+ax2 = ax.twinx()
+
+# Plot SOPR with its own scale and change tick color
+ax2.bar(df['date'], df['sopr'] - 1, color='lightblue')
+ax2.tick_params(axis='y', labelcolor='lightblue')
+
+plt.show()
+```
+![png](/images/Coding-challenge/sopr1.png)
+
+As you can see I decided to display the SOPR centered around 0 in stead of 1, to be able to make a bar chart that show values below 1 as downward facing bars.
+Let us create a simple detection of when the SOPR is below 1 and assign red colors to these bars:
+
+```python
+# Creating dummy values for coloring the bars:
+df['sopr_colors'] = np.where(df['sopr'] < 1, 'pink', 'lightblue')
+```
+
+Let us use this dummy column as the colors for the bars:
+
+```python
+fig, ax = plt.subplots(figsize=(16,10))
+
+# Plot BTC price, and set tick labels to the same color
+ax.plot(df['date'], df['Close'], color='grey', linestyle='--')
+ax.tick_params(axis='y', labelcolor='grey')
+
+# Generate a new Axes instance, on the twin-X axes (same position)
+ax2 = ax.twinx()
+
+# Plot SOPR with its own scale and change tick color
+ax2.bar(df['date'], df['sopr'] - 1, color=df['sopr_colors'])
+ax2.tick_params(axis='y', labelcolor='lightblue')
+
+plt.show()
+```
+![png](/images/Coding-challenge/sopr2.png)
+
+It is interesting to know when the SOPR is below 1 as it could indicate a good dip buying opportunity it seems. At least when we are in a bull market. In a bear market it seems not to as an indicator as it is most of the time below 1. Maybe you could say you would want to do the opposite by shorting the market.
+
+Another way of using the SOPR could be to flag dates where the SOPR has been above or below 1 for a certain number of consecutive days. For example if the SOPR has been above 1 for 14 consecutive days it could indicate that we are due for a correction in the market.
+
+### Average transactions fees
+
+The average transaction fees indicator is self explanetory. The more congested the network becomes the more expensive it becomes to transfer bitcoin from one address to another.
+
+```python
+fig, ax = plt.subplots(figsize=(16,10))
+
+# Plot BTC price, and set tick labels to the same color
+ax.plot(df['date'], df['Close'], color='grey', linestyle='--')
+ax.tick_params(axis='y', labelcolor='grey')
+
+# Generate a new Axes instance, on the twin-X axes (same position)
+ax2 = ax.twinx()
+
+# Plot fees_mean with its own scale and change tick color
+ax2.bar(df['date'], df['fees_mean'], color='pink')
+ax2.tick_params(axis='y', labelcolor='pink')
+
+plt.show()
+```
+
+![png](/images/Coding-challenge/fees1.png)
+
+An interesting event detection mechanism to look at, could be to determine when the fees have sudden spikes by comparing them to the difference between a specific moving average and the fees. Let us make a 30 day moving average and flag when the spike in fees has a difference from the average that is more than 35%.
+
+```python
+df['fees_mean_ma'] = df['fees_mean'].rolling(window=30).mean()
+df['fees_mean_colors'] = np.where((df['fees_mean'] * 0.35) < df['fees_mean'] - df['fees_mean_ma'], 'r', 'pink')
+```
+
+First let us plot the difference between the fees and 30 moving average and see which dates are flagged:
+
+```python
+fig, ax = plt.subplots(figsize=(16,10))
+
+# Plot BTC price, and set tick labels to the same color
+ax.plot(df['date'], df['Close'], color='grey', linestyle='--')
+ax.tick_params(axis='y', labelcolor='grey')
+
+# Generate a new Axes instance, on the twin-X axes (same position)
+ax2 = ax.twinx()
+
+# Plot fees_mean with its own scale and change tick color
+ax2.bar(df['date'], (df['fees_mean'] - df['fees_mean_ma']), color=df['fees_mean_colors'])
+ax2.tick_params(axis='y', labelcolor='pink')
+
+plt.show()
+```
+
+![png](/images/Coding-challenge/fees2.png)
+
+Now let us see these flagged dates in the actualy fees:
+
+
+```python
+fig, ax = plt.subplots(figsize=(16,10))
+
+# Plot BTC price, and set tick labels to the same color
+ax.plot(df['date'], df['Close'], color='grey', linestyle='--')
+ax.tick_params(axis='y', labelcolor='grey')
+
+# Generate a new Axes instance, on the twin-X axes (same position)
+ax2 = ax.twinx()
+
+# Plot fees_mean with its own scale and change tick color
+ax2.bar(df['date'], df['fees_mean'], color=df['fees_mean_colors'])
+ax2.tick_params(axis='y', labelcolor='pink')
+
+plt.show()
+```
+
+![png](/images/Coding-challenge/fees3.png)
+
+By taking the absolut value (abs()) of the difference, also sharp drops in fees compared to the moving average, would be captured. Of course you could also simply flag dates where the difference (in absolute value) is bigger than a hardcoded value just to see when the fees are diverting significantly higher or lower from the chosen moving average.
+
+### Active addresses
+
+I assume this indicator determines how many active bitcoin addresses there are on the network, based on whether coins have been sent/recieved on the day. Or maybe it is within a certain timeframe. Maybe within a month.
+
+```python
+fig, ax = plt.subplots(figsize=(16,10))
+
+# Plot BTC price, and set tick labels to the same color
+ax.plot(df['date'], df['Close'], color='grey', linestyle='--')
+ax.tick_params(axis='y', labelcolor='grey')
+
+# Generate a new Axes instance, on the twin-X axes (same position)
+ax2 = ax.twinx()
+
+# Plot active addresses with its own scale and change tick color
+ax2.bar(df['date'], df['active_addresses'], color='lightgreen')
+ax2.tick_params(axis='y', labelcolor='lightgreen')
+
+plt.show()
+```
+
+![png](/images/Coding-challenge/adr1.png)
+
+Here a useful detection could simply be to flag everytime the number of active addresses breaks to new all time highs.
+
+```python
+# Create series with 'r' (red color) for when a certain active addresses in the time series beats a former ath, otherwise 'lightgreen'
+df['active_addresses_colors'] = 'lightgreen'
+ath = df['active_addresses'][0]
+t = 0
+for adr in df['active_addresses']:
+    if adr > ath:
+        df['active_addresses_colors'].iloc[t] = 'r'
+        ath = adr
+    else:
+        df['active_addresses_colors'].iloc[t] = 'lightgreen'
+    t += 1
+```
+
+By running the value_counts we get that the all time high was beat 29 times.
+
+```python
+df['active_addresses_colors'].value_counts()
+```
+
+Let us plot it again with the flagged dates where the all time high was beat:
+
+```python
+fig, ax = plt.subplots(figsize=(16,10))
+
+# Plot BTC price, and set tick labels to the same color
+ax.plot(df['date'], df['Close'], color='grey', linestyle='--')
+ax.tick_params(axis='y', labelcolor='grey')
+
+# Generate a new Axes instance, on the twin-X axes (same position)
+ax2 = ax.twinx()
+
+# Plot active addresses with its own scale and change tick color
+ax2.bar(df['date'], df['active_addresses'], color=df['active_addresses_colors'])
+ax2.tick_params(axis='y', labelcolor='lightgreen')
+
+plt.show()
+```
+
+![png](/images/Coding-challenge/adr2.png)
+
+
+## Bonus question - Docker
+
+I will skip this one as I have never used Docker. I know it is a tool for containerizing your code with a code environment, so it can run on any system because it is not reliant on the version of python installed and the version of the installed packages.
+I could probably have googled my way to giving an answer for this, but I would rather just say that I would have to read up on this if we have to use Docker a lot. When organising the data flows and notebooks in Dataiku, the projects and whole system in fact, is automatically containerized so I have not had to worry about this before.
+
+# Part 3
+
+## Deep dive - `3M219KR5vEneNb47ewrPfWyb5jQ2DjxRP6`
+
+When diving into the stats about this address using the blockchair explorer I get the following:
+
+- First usage was the 13th of November 2018 where only 0.01 BTC was recieved.
+- The last transaction was about a month ago the 19th of April.
+- Overall almost 1,5 million BTC has been received and the exact same amount has been spent. So it is being used as some kind of intermediate address.
+- The structure seems to be that the address receives a very big amount of BTC once in a while via multiple transactions within a small window of time. Then it sends multiple transactions of 100 BTC to the this address, "1NDyJtNTjmwk5xPNhjgAMu4HDHigtobu1s". I think the latter is an exchange address because recieved coins get split into many smaller amounts distributed to many differnet addresses.
+
+I am not sure what this is to be honest, but I have a couple of reflections:
+
+1. It could be an address a miner is using to gather mining rewards and then sometimes make a batch transfer to an exchange to sell them. However, the amounts seem a bit too big for this I think and I dont see why the rewards should not come directe as a coinbase transaction. So I dont really think this is what it is.
+
+2. Maybe it is an address that is being used by someone like Greyscale ONLY to sell bitcoin when some of their institutional customers are selling their certificates in their system. However, I am not entirely sure if that is how it would be set up.
+
+3. I also thought it could have something to do with the OTC market, but when thinking it through it would make more sense if it was the reverse of what I am seeing. Here it seems the coins are being distributed rather than collected in some huge vault address. But maybe it could be an exchange buying coins of wealthy clients via OTC and selling them in the exchange afterwards.
+
+4. If I look up both addresses on bitcoinwhoswho.com I get that they have been reported for scam many times. If that is true, I guess it has to be something completely different that is going on. I am not sure what that could be.
+
+## Bonus question - `3BMEXYAk2tXXG5dS21fz2v7G7cBsZyUuUr`:
+
+The bonus address only has 6 transactions and only 10.38 BTC in volume. It was only used for about 6 months 2 years ago.
+This address is also being used as an intermediary address. The three incmoning transactions are in every case being sent on to a new addres the next day or 2 days after the first transaction.
+
+I would think it is just an address belonging to a privat indiviual, but it is very odd that it is only being used to forward incoming transactions the next day. I am afraid I dont have much more to say about this other than the few observations above.
