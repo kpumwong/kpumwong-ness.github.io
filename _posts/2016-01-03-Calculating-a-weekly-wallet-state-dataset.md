@@ -3,10 +3,5 @@ layout: post
 title: Calculating a weekly wallet state dataset
 ---
 <!--<img src="/images/fulls/01.jpg" class="fit image">-->
-GraphQL endpoints are widespread and a powerful way of interacting with an API compared to traditional REST API endpoints. It allows the user to query all available data from one single endpoint and choose only what is needed.
+Here I will show how to create a dataset from transactions containing the state of all wallets (or value locked) at any given point in time. We do this to be able to plot TVM (Total Value Managed or Net Value Managed), which is an important metric to keep track of.
 
-## Introduction
-
-In this example I will be extracting the newest data using GraphQL.
-Also I will show the use of asyncronous execution which basically means the code will wait for the server onthe other end before continuing.
-Lastly, the code will show how I am only fetching the newest data every day an

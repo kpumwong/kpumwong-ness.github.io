@@ -3,10 +3,5 @@ layout: post
 title: Labelling users
 ---
 <!--<img src="/images/fulls/01.jpg" class="fit image">-->
-GraphQL endpoints are widespread and a powerful way of interacting with an API compared to traditional REST API endpoints. It allows the user to query all available data from one single endpoint and choose only what is needed.
+This example shows how I am labbeling users based on a number of criteria, to be able to determine whether they are active or inactive week by week. This enables me to chart the developement over time.
 
-## Introduction
-
-In this example I will be extracting the newest data using GraphQL.
-Also I will show the use of asyncronous execution which basically means the code will wait for the server onthe other end before continuing.
-Lastly, the code will show how I am only fetching the newest data every day an

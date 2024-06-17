@@ -3,10 +3,56 @@ layout: post
 title: Reading from and writing to Snowflake
 ---
 <!--<img src="/images/fulls/01.jpg" class="fit image">-->
-GraphQL endpoints are widespread and a powerful way of interacting with an API compared to traditional REST API endpoints. It allows the user to query all available data from one single endpoint and choose only what is needed.
+Example of how to use the python snowflake-connector library to interact with a Snowflake database.
 
-## Introduction
+## Set up
 
-In this example I will be extracting the newest data using GraphQL.
-Also I will show the use of asyncronous execution which basically means the code will wait for the server onthe other end before continuing.
-Lastly, the code will show how I am only fetching the newest data every day an
+To get started we need the snowflake-connector library imported and the credentials to allow for connection to the database.
+
+Here we import the library:
+
+```python
+import snowflake.connector
+from snowflake.connector.pandas_tools import write_pandas
+```
+
+And here we create the connection string and cursor where sensitive information like the username and password can be read from a .env file for example using config().
+
+```python
+conn = snowflake.connector.connect(
+    user=config('SNOW_USER'),
+    password=config('SNOW_PASSWORD'),
+    account=config('SNOW_ACCOUNT'),
+    database='ANALYTICS',
+    schema='PUBLIC',
+    warehouse='COMPUTE_WH',
+    role='ACCOUNTADMIN'
+)
+curs = conn.cursor()
+```
+
+## Read data
+
+Using the cursor we can execute any supported SQL remotely on the Snowflake database and fetch the results like so:
+
+```python
+sql =  """ select * from "DATABASE"."SCHEMA"."TABLE/VIEW"; """
+
+curs.execute(sql)
+df = curs.fetch_pandas_all()
+```
+
+The query results will be written directly into a pandas datagframe for further processing.
+
+## Write data
+
+To write a pandas dataframe into a table in Snowflake we simply need the write_pandas() function.
+If the database, schema and table is not already defined in the connection string we can define it inside the function. You can also write the dataframe in chunks if it is a big dataset. Lastly, we save "success, nchunks and nrows" to be able to print out whether it was successful and how many chunks and rows were written. Usually you would print this to a log.
+
+```python
+success, nchunks, nrows, _ = write_pandas(conn=conn, df=dataframe_name, database='ANALYTICS', schema='PUBLIC', table_name=dataset_name, chunk_size=1000000)
+```
+
+```python
+logging.info('--- ' + dataset_name + ' --- Success: ' + str(success) + ',' + ' Chunks: ' + str(nchunks) + ',' + ' Rows: ' + str(nrows) + ' Finished! Data written to Snowflake!')
+```
