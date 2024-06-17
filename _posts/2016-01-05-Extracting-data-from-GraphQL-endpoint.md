@@ -6,7 +6,7 @@ title: Extracting data from a GraphQL endpoint
 In this example I will be extracting data from a GraphQL endpoint.
 Also, I will show the use of asyncronous execution, enabling the code to wait for the API server before continuing. Lastly, the code will show how I am only fetching only the newest data since the last run and appending this to the database.
 
-## Set up
+## Setup
 
 
 

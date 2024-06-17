@@ -1,11 +1,11 @@
 ---
 layout: post
-title: Reading from and writing to Snowflake
+title: Using python to interact with Snowflake
 ---
 <!--<img src="/images/fulls/01.jpg" class="fit image">-->
-Example of how to use the python snowflake-connector library to interact with a Snowflake database.
+Simple example of how to use the python snowflake-connector library to interact with a Snowflake database. Both regarding reading and writing data.
 
-## Set up
+## Setup
 
 To get started we need the snowflake-connector library imported and the credentials to allow for connection to the database.
 
