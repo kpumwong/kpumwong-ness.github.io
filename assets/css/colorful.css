@@ -2,7 +2,7 @@
 .highlight table pre { margin: 0; }
 .highlight, .highlight .w {
   color: #bbbbbb;
-  background-color: #000;
+  background-color: #fff;
 }
 .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1 {
   color: #888;
@@ -25,17 +25,17 @@
   color: #339;
 }
 .highlight .o {
-  color: #333;
+  color: #e1e1e1;
 }
 .highlight .ow {
   color: #000;
   font-weight: bold;
 }
 .highlight .nb, .highlight .bp {
-  color: #007020;
+  color: #00bf36;
 }
 .highlight .nf, .highlight .fm {
-  color: #06B;
+  color: #ff6c71;
   font-weight: bold;
 }
 .highlight .nc {
@@ -86,7 +86,7 @@
   font-weight: bold;
 }
 .highlight .s, .highlight .sb, .highlight .dl, .highlight .s2, .highlight .sh, .highlight .s1 {
-  background-color: #fff0f0;
+  background-color: #414141;
 }
 .highlight .sa {
   color: #080;
@@ -120,7 +120,7 @@
   font-weight: bold;
 }
 .highlight .mi, .highlight .il {
-  color: #00D;
+  color: #00b9ff;
   font-weight: bold;
 }
 .highlight .mf {
