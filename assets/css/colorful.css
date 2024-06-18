@@ -2,7 +2,6 @@
 .highlight table pre { margin: 0; }
 .highlight, .highlight .w {
   color: #bbbbbb;
-  background-color: #fff;
 }
 .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1 {
   color: #888;
