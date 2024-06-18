@@ -168,7 +168,9 @@ df = queryDataWait(execution_id)
 
 When running the function it will print the status every 10 seconds until it is completed.
 
+```python
 QUERY_STATE_EXECUTING
 QUERY_STATE_EXECUTING
 QUERY_STATE_EXECUTING
 QUERY_STATE_COMPLETED
+```
