@@ -33,7 +33,7 @@ transport = AIOHTTPTransport(url=graph_url)
 client = Client(transport=transport, fetch_schema_from_transport=True)
 ```
 
-We can interact with the API using parameters. So if we need to automate some kind of filtering it is possible. For example if we only want the newest data since the last run we can query the latest block in the database and only get data from after this block from the API.
+We can interact with the API using variables. So if we need to automate some kind of filtering it is possible. For example if we only want the newest data since the last run, we can query the latest block in the database and only get data from after this block from the API.
 
 ```python
 variables = {
