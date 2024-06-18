@@ -39,3 +39,6 @@ webmaster_verifications:
 social_icons:
   - Github
   - LinkedIn
+
+markdown: kramdown
+highlighter: rouge
