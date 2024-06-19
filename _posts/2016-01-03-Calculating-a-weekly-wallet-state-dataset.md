@@ -19,7 +19,6 @@ First let us make sure we have only one row per transaction hash. We don't need 
 
 ```python
 df = df.groupby(['TIMESTAMP', 'POSITION_ID', 'COLLATERAL_TOKEN', 'TX_HASH']).agg({'COLLATERAL': 'sum', 'PRINCIPAL':'sum'}).reset_index()
-v_status.shape
 ```
 
 Now we need to do a cummulative sum so we have the value locked at the time of each transaction.
