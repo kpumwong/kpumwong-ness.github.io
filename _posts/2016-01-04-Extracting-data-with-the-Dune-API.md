@@ -8,6 +8,7 @@ Here I show how to extract a dataset created on Dune.com. I show both the python
 ## SQL on Dune.com
 
 Here is an example of a table being created with Dune. I am fetching all transactions ever done on Instadapp and Defisaver on ethereum mainnet.
+I usually write complex SQL using CTEs. It makes the code simpler to construct and easy to comprehend. 
 You can see I am using a parameter in the where statements to be able to filter on what timeframe I want when I fetch the data using python.
 
 ```sql
