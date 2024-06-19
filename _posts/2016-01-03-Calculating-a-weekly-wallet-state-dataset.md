@@ -18,7 +18,7 @@ For the sake of simplicity let's say all amounts are already converted to USD ba
 First let us make sure we have only one row per transaction hash. We don't need the granularity of operations.
 
 ```python
-df = df.groupby(['TIMESTAMP', 'POSITION_ID', 'COLLATERAL_TOKEN', 'TX_HASH']).agg({'COLLATERAL': 'sum', 'PRINCIPAL':'sum'}).reset_index()
+df = df.groupby(['TIMESTAMP', 'POSITION_ID', 'COLLATERAL_TOKEN', 'TX_HASH']).agg({'COLLATERAL_VOLUME': 'sum', 'PRINCIPAL_VOLUME':'sum'}).reset_index()
 ```
 
 Now we need to do a cummulative sum so we have the value locked at the time of each transaction.
