@@ -24,7 +24,7 @@ df = df.groupby(['TIMESTAMP', 'POSITION_ID', 'COLLATERAL_TOKEN', 'TX_HASH']).agg
 Now we need to do a cummulative sum so we have the value locked at the time of each transaction.
 
 ```python
-v_status[['LOCKED_COLLATERAL', 'LOCKED_DEBT']] = v_status.groupby('POSITION_ID')[['COLLATERAL_VOLUME', 'PRINCIPAL_VOLUME']].cumsum()
+df[['LOCKED_COLLATERAL', 'LOCKED_DEBT']] = df.groupby('POSITION_ID')[['COLLATERAL_VOLUME', 'PRINCIPAL_VOLUME']].cumsum()
 ```
 
 The challenge is now that we need to be able to know the value locked for each position even in the weeks where the user did not do any transactions. For example if a user deposited 10 ETH in week 1 and withdrew 5 ETH in week 6, the value locked in the weeks in between will be 10 ETH. We need to be able to see this in the dataset.
