@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Tableau charts and code examples
+title: Tableau work
 ---
 <!--<img src="/images/fulls/01.jpg" class="fit image">-->
 This post will go through a couple of examples of the work I have done in Tableau. Charts are stripped of axis info to censor any sensitive information. Example are simple as it is difficult to show details of my work in a censored way.
