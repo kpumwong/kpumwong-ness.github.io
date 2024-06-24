@@ -7,8 +7,8 @@ Here I show how to extract a dataset created on Dune.com. I show both the python
 
 ## SQL on Dune.com
 
-Here is an example of a table being created with Dune. I am fetching all transactions ever done on Instadapp and Defisaver on ethereum mainnet.
-I usually write complex SQL using CTEs. It makes the code simpler to construct and easy to comprehend. 
+Here is an example of a table being created with Dune. I am fetching all transactions ever done on Instadapp and Defisaver on the Ethereum mainnet.
+I usually write complex SQL using CTEs. It makes the code simpler to construct and easier to comprehend. 
 You can see I am using a parameter in the where statements to be able to filter on what timeframe I want when I fetch the data using python.
 
 ```sql
@@ -22,7 +22,7 @@ id_txs as (
     select block_time as "timestamp", hash as tx_hash, 'Instadapp' as frontend
     from ethereum.transactions
     join instadapp_accounts on to = account
-    where block_time > from_unixtime({{day_limit}}, 'UTC')
+    where block_time > from_unixtime(&#123;{day_limit}&#123;, 'UTC')
     group by 1,2,3
 ),
 
@@ -31,21 +31,21 @@ id_txs as (
 ds_txs as (
     select evt_block_time as "timestamp", evt_tx_hash as tx_hash, 'Defisaver' as frontend
     from defisaver_ethereum.DefisaverLogger_evt_LogEvent
-    where evt_block_time > from_unixtime({{day_limit}}, 'UTC')
+    where evt_block_time > from_unixtime(&#123;{day_limit}&#123;, 'UTC')
     group by 1, 2, 3
     
     union all
     
     select evt_block_time as "timestamp", evt_tx_hash as tx_hash, 'Defisaver' as frontend
     from defisaver_ethereum.DefisaverLogger_evt_RecipeEvent
-    where evt_block_time > from_unixtime({{day_limit}}, 'UTC')
+    where evt_block_time > from_unixtime(&#123;{day_limit}&#123;, 'UTC')
     group by 1, 2, 3
     
     union all
     
     select evt_block_time as "timestamp", evt_tx_hash as tx_hash, 'Defisaver' as frontend
     from defisaver_ethereum.DefisaverLogger_evt_ActionDirectEvent
-    where evt_block_time > from_unixtime({{day_limit}}, 'UTC')
+    where evt_block_time > from_unixtime(&#123;{day_limit}&#123;, 'UTC')
     group by 1, 2, 3
 )
 
@@ -60,7 +60,7 @@ order by timestamp desc
 You can see I am using a parameter in the where statements to be able to filter on what timeframe I want when I fetch the data using python.
 
 ```sql
-where evt_block_time > from_unixtime({{day_limit}}, 'UTC')
+where evt_block_time > from_unixtime(&#123;{day_limit}&#123;, 'UTC')
 ```
 
 ## Fetch data with python
@@ -71,7 +71,7 @@ In python I am using the requests library to connect to Dune's API:
 from requests import get, post
 ```
 
-To create the connection string we need a Dune API key and a function colleting the various attributes into a string we can use.
+To create the connection string we need a Dune API key and a function collecting the various attributes into a string we can use.
 
 ```python
 HEADER = {"x-dune-api-key" : config('DUNE_API_KEY')}
