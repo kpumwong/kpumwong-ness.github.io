@@ -2,7 +2,7 @@
 layout: post
 title: Tableau work
 ---
-<!--<img src="/images/fulls/01.jpg" class="fit image">-->
+
 This post will go through a couple of examples of the work I have done in Tableau. Charts are stripped of axis info to censor any sensitive information. Example are simple as it is difficult to show details of my work in a censored way.
 
 ## Waterfall chart
@@ -45,4 +45,4 @@ Lastly, "Show data as" will aggregate the data so each bar represent a day, week
 
 Filters are a good way of giving the user of the dashboards some autonomy to dive deeper into the data. You can make multiple choice, single choice, sliders etc.
 
-<img src="/images/Tableau/Timeframe.png" alt="Filters" class="fit image">
+<img src="/images/Tableau/Filters.png" alt="Filters" class="fit image">

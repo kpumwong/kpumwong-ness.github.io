@@ -2,7 +2,7 @@
 layout: post
 title: Using python to interact with Snowflake
 ---
-<!--<img src="/images/fulls/01.jpg" class="fit image">-->
+
 Simple example of how to use the python snowflake-connector library to interact with a Snowflake database. Both regarding reading and writing data.
 
 ## Setup

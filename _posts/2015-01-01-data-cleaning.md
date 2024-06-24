@@ -9,7 +9,7 @@ This project was about preparing weekly sales data from wholesalers selling vari
 
 As seen below there are 2 empty lines between each dataset and 6 rows (headlines) with info about the next dataset. The information from 5 out of these 6 rows needs to be extrated and kept as columns in the final dataset. (The first headline is not interesting, so that can be skipped)
 
-![png](/images/Clean-wrangle/before.png)
+<img src="/images/Clean-wrangle/before.png" class="fit image">
 
 The sales for each product is recorded in 6 corresponding to 6 KPIs; Sales value, Sales units, Transactions, Buying customer, Promo sales and Average price per sales unit. So the number of columns are 6 x [n of products] plus an aggregate of all the products ("All products", first 6 columns after the Time column).
 We want to change this "wide" format into a long format so we only have 13 columns in the end. One column for date info (Time), one for product info, the 6 KPIs and the 5 columns extracted from the headlines. Notice there are two header rows after the headlines (multiindex), where the first contains the product info and the second contains the KPI info.
@@ -132,6 +132,6 @@ for df in all_df.keys():
 
 Screeshot of the final dataset in Dataiku:
 
-![png](/images/Clean-wrangle/after.png)
+<img src="/images/Clean-wrangle/after.png" class="fit image">
 
 Further work could be to use some regex to split the info in the "product" column into multiple new columns like product_id, count_per_pack, package_type, brand/description and packsize.

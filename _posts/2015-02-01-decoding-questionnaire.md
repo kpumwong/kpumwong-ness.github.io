@@ -10,8 +10,8 @@ Using Python we can easily loop over each column and do the mapping efficiently.
 
 Below you can see a couple of screenshots of the encoded data set:
 
-![png](/images/Mapping-with-Regex/before1.png)
-![png](/images/Mapping-with-Regex/before2.png)
+<img src="/images/Mapping-with-Regex/before1.png" class="fit image">
+<img src="/images/Mapping-with-Regex/before2.png" class="fit image">
 
 First I perform a couple of simple replacements on a some of the the columns refering to the first standard questions.
 Also, I remove all the curly brackets from the dataset. I also want to remove the underscores, but that has to be done after the mapping of the brand names.
@@ -34,7 +34,7 @@ mapping_dict = {'brands_1036':'Aba',
 'brands_0023':'Tiger',
 'brands_0003':'Maan',
 'brands_0001':'Lurian',
-'brands_1050':'Tapern',
+'brands_1050':'Tapern'}
 ```
 
 Now I can use this dictionary to map the brand codes in the column names:
@@ -110,7 +110,7 @@ for col in df_map.columns:
 
 The 'hhcomp' coloumn was able to have more than one answer seperated with a ',':
 
-![png](/images/Mapping-with-Regex/before2.png)
+<img src="/images/Mapping-with-Regex/before3.png" class="fit image">
 
 Since the answers also had numbers in them, it was not straight forward to replace the values. I decided to replace 1 with 1x, 2 with 2x etc. so there would be no issues when replacing 3 with 'Children 10 to 12' for example. Because, then the '3' in 'Teenagers 13 to 17' would have also been replaced.
 
@@ -118,4 +118,4 @@ The rest of the columns were straight forward in mapping based on the different 
 
 Below is a screenshot of the final data set where everything is mapped:
 
-![png](/images/Mapping-with-Regex/after1.png)
+<img src="/images/Mapping-with-Regex/after1.png" class="fit image">
