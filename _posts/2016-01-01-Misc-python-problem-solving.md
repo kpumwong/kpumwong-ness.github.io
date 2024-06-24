@@ -3,13 +3,13 @@ layout: post
 title: Misc python problem solving
 ---
 
-This post will have various small examples of the use of different python tools and frameworks that I was not able to fit into the bigger examples, but I find worthy of showcasing.
+This post will have various small examples of the use of different python tools and frameworks, that I was not able to fit into the other examples. However, I find them worthy of showcasing.
 
 ## Load environment variables
 
-It is important to handle enviroment variables delicately as we should not have usernames and passwords floating around in the github repos. A simple way of doing this is to have all creds for connecting to databases and APIs in a .env file that is added to the .gitignore file and thereby not pushed to the remote repo. There are even more secure ways of doing handling this.
+It is important to handle enviroment variables delicately, as we should not have usernames and passwords floating around online in the github repos. A simple way of doing this, is to have all credentials for connecting to databases and APIs in a .env file. This should then be added to the .gitignore file and thereby not pushed to the remote repo.
 
-In side the python files that are used in production you could then add this code to load the .env file contents if you run the file locally. However, this would fail if the python file was run elsewhere.
+Inside the python files that are used in production, you can add the code below to load the .env file contents when you need to run the file locally.
 
 ```python
 try:
@@ -19,13 +19,13 @@ except:
     pass
 ```
 
-Obviously we would need to be able to run the python files in the cloud for some scheduled tasks. This could for example be as a lambda function on AWS or as a containerised version of the repo. The environment variables would then be set up securely in this environment so the code would run as intended.
+Obviously we would need to be able to run the python files in the cloud for some scheduled tasks. This could for example be as a lambda function on AWS or as a containerised version of the repo. The environment variables would then be set up securely in this environment, so the code would still run as intended. That is why we put the code above into a try/except so it will continue running even if it fails.
 
 ## Logging
 
-When running code in production it is important to have good logging set up, so you can more easily locate problems with the scheduled code as it runs in the cloud. And also to give good info on the status of the run.
+When running code in production it is important to have good logging set up, so you can more easily locate problems with the scheduled code as it runs in the cloud. Also to give info on the status of the run.
 
-To set it up in the python files we need to import logging and define the logger.
+To set it up in the python files, we need to import logging and define the logger.
 
 ```python
 import logging
@@ -55,4 +55,4 @@ For example:
 logger.info('Initialising {} dataset preparation...'.format(dataset_name))
 ```
 
-Usually you will print these to a log file as well to be able to always view the history of previous runs and be able to determine a problem this way.
+Usually you will print these to a log file as well, to be able to always view the history of previous runs and be able to determine a problem this way.
