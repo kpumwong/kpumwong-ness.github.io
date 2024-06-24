@@ -16,7 +16,7 @@ A waterfall chart is an interesting way of showing developement over time. Each 
 When looking at stacked bar charts it is always a good idea to also create a share of total chart.
 In the first chart the colors could represent some kind of category, product or department, the y-axis would be revenue, user count or some kind of volume and finally the x-axis would be time.
 
-<img src="/images/Tableau/bars_clean.png" alt="Stacked Bar Charts" class="fit image">
+<img src="/images/Tableau/Bars_clean.png" alt="Stacked Bar Charts" class="fit image">
 
 ## Area charts
 
