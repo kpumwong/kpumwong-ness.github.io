@@ -15,7 +15,7 @@ We have want to define some arbitrary crietia for when we determine a user to be
 
 The concept of a decision tree can be seen below.
 
-<img src="/images/Desicion_tree/Decision-Tree-elements-2.webp" alt="Decision Tree" class="fit image">
+<img src="/images/Desicion_tree/decision-tree.png" alt="Decision Tree" class="fit image">
 
 Imagine we use this structure to determine whether a user is active or inactive.
 As a very simple example, let us we first ask whether the user has some collateral locked and then whether it has done at least 1 transaction in the last 3 months. If we can say yes to both the user is active.
@@ -25,7 +25,7 @@ If it has no collateral locked it will drop out of the decision tree immediately
 ## Data preparation
 
 I will not go through the preparation of the data except for one little example. We can imagine we already have a weekly state dataset prepared, so we know how much value locked a user has week by week. Much like this example here:
-[Calculating a weekly wallet state dataset] (https://kasper-birkelund.github.io/2016/01/03/Calculating-a-weekly-wallet-state-dataset/)
+[Link] (https://kasper-birkelund.github.io/2016/01/03/Calculating-a-weekly-wallet-state-dataset/)
 
 We should also know whether the user had any collateral volume (absolute value of deposits and withdraws). The user might deposit 10 ETH and withdraw 10 ETH in the same week. Even though by the end of the week the users has no locked colleral, it was still active in this week.
 
