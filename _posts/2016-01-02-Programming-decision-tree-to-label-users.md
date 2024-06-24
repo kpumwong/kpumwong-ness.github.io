@@ -25,7 +25,7 @@ If it has no collateral locked it will drop out of the decision tree immediately
 ## Data preparation
 
 I will not go through the preparation of the data except for one little example. We can imagine we already have a weekly state dataset prepared, so we know how much value locked a user has week by week. Much like this example here:
-[Link] (https://kasper-birkelund.github.io/2016/01/03/Calculating-a-weekly-wallet-state-dataset/)
+<a href="https://kasper-birkelund.github.io/2016/01/03/Calculating-a-weekly-wallet-state-dataset/" target="_blank">Calculating a weekly wallet state dataset</a>
 
 We should also know whether the user had any collateral volume (absolute value of deposits and withdraws). The user might deposit 10 ETH and withdraw 10 ETH in the same week. Even though by the end of the week the users has no locked colleral, it was still active in this week.
 
