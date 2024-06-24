@@ -9,7 +9,7 @@ This post will go through a couple of examples of the work I have done in Tablea
 
 A waterfall chart is an interesting way of showing developement over time. Each bar represents a day, week, month eg. and the change at that point in time compared to the previous day, week, month. That way you can easily see how much you lost or gained.
 
-![png](/images/Tableau/waterfall.png)
+![png](/images/Tableau/Waterfall.png)
 
 ## Stacked bar charts and share of total
 
@@ -24,13 +24,13 @@ Area charts can be prefered visually in stead of bar charts.
 
 ![png](/images/Tableau/area_clean.png)
 
-![png](/images/Tableau/area_100%_clean.png)
+![png](/images/Tableau/area_100_clean.png)
 
 
 This would give us the actual numbers, which are important, but the next chart would give us a quick understanding of the share total.
 So below the colors and x-axis are still representing the same as above but the y-axis is now percentage alwas adding up to 100%. So y-axis would always be from 0% to 100%.
 
-![png](/images/Tableau/100%.png)
+![png](/images/Tableau/100.png)
 
 ## Custom timeframe filter
 
