@@ -15,7 +15,7 @@ We have want to define some arbitrary crietia for when we determine a user to be
 
 The concept of a decision tree can be seen below.
 
-<img src="/images/Desicion_tree/decision_tree.png" alt="Decision Tree" class="fit image">
+<img src="/images/Decision_tree/decision_tree.png" alt="Decision Tree" class="fit image">
 
 Imagine we use this structure to determine whether a user is active or inactive.
 As a very simple example, let us we first ask whether the user has some collateral locked and then whether it has done at least 1 transaction in the last 3 months. If we can say yes to both the user is active.
