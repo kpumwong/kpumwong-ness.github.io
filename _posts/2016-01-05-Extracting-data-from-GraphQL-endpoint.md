@@ -33,7 +33,11 @@ transport = AIOHTTPTransport(url=graph_url)
 client = Client(transport=transport, fetch_schema_from_transport=True)
 ```
 
-We can interact with the API using variables. So if we need to automate some kind of filtering it is possible. For example if we only want the newest data since the last run, we can query the latest block in the database and only get data from after this block from the API.
+## Load latest data
+
+If we need to automate some kind of filtering, we can interact with the API using variables. For example if we only want the newest data since the last run, we can query the latest block in the Snowflake database and only get data from after this block from the API.
+
+First we define the variable.
 
 ```python
 variables = {
@@ -43,7 +47,24 @@ variables = {
     }
 ```
 
-Here we define the function to get the data. The result will be a pandas dataframe.
+The we load the latest block in the database.
+
+```python
+sql = """ select max(BLOCK) from "DATA_LOAD"."PUBLIC"."{}" """.format(dataset_name)
+
+curs.execute(sql)
+mb = curs.fetch_pandas_all()
+```
+
+Now we can overwrite the block variable if we only need data after the last update.
+
+```python
+variables['block'] = int(mb['MAX(BLOCK)'].values[0])
+```
+
+## Load data
+
+We can now define the function to get the data. The result from the API is in json format, but as you can see this function converts the data into a pandas dataframe.
 
 ```python
 async def get_data(query, variables, subset):
@@ -69,8 +90,8 @@ async def get_data(query, variables, subset):
     return all_data
 ```
 
-To retrieve the data we have to define a GraphQl query. Contrary to traditional REST APIs you can define much more presicely what you want to retrieve. Kind of like you can with SQL.
-As you can see there is a "where" statement that filters the data on a specific protocol and blockNumbers greater than a certain block (blockNumber_gt).
+To retrieve the data we have to define a GraphQl query. Contrary to traditional REST APIs you can define much more presicely what you want to retrieve. Kind of like you can with a direct database connection.
+As you can see there is a "where" statement that filters the data on a specific protocol and blockNumber greater than a certain block (blockNumber_gt).
 
 ```python
 query = gql(
@@ -94,14 +115,14 @@ query = gql(
 )
 ```
 
-Below we run the "get_data()" function and fetch the data. The results comes out as a json file.
+Below we run the "get_data()" function and fetch the data.
 
 ```python
 triggers = get_data(query, variables, 'events')
 triggers = asyncio.run(triggers)
 ```
 
-Note that you might have to deal with nested data. In the query you can see there is a user table nested inside the events table. To deal with this we have to flatten the table to make sure all columns are on the same level and each cell of the dataframe only have one value. So we exapnd the dataset with the nested user dataset like so:
+Note that you might have to deal with nested data. In the query you can see there is a user table nested inside the events table. To deal with this we have to "flatten" the table to make sure all columns are on the same level and each cell of the dataframe only have one value. So we expand the dataset with the nested user dataset like so:
 
 ```python
 triggers = pd.concat([triggers.drop(['user'], axis=1).reset_index(drop=True), pd.json_normalize(triggers['user'])], axis=1)
