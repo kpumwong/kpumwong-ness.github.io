@@ -20,7 +20,7 @@ The concept of a decision tree can be seen below.
 Imagine we use this structure to determine whether a user is active or inactive.
 As a very simple example, let us we first ask whether the user has some collateral locked and then whether it has done at least 1 transaction in the last 3 months. If we can say yes to both the user is active.
 If it has no collateral locked it will drop out of the decision tree immediately be defined as inactive and labelled as "Closed". If the user HAS locked collateral, but no transactions in the last 3 months it is also inactive and further label it as "Idle".
-
+Contrary to the concapt example above, this described example would only have one branch.
 
 ## Data preparation
 
