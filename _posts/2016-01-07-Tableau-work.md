@@ -9,28 +9,27 @@ This post will go through a couple of examples of the work I have done in Tablea
 
 A waterfall chart is an interesting way of showing developement over time. Each bar represents a day, week, month eg. and the change at that point in time compared to the previous day, week, month. That way you can easily see how much you lost or gained.
 
-![png](/images/Tableau/Waterfall.png)
+<img src="/images/Tableau/Waterfall.png" alt="Waterfall Chart" class="fit image">
 
 ## Stacked bar charts and share of total
 
 When looking at stacked bar charts it is always a good idea to also create a share of total chart.
-In the first chart the colors could represent some kind of category, product or department, the y-axis  would be revenue, user count or some kind of volume and finally the x-axis would be time.
+In the first chart the colors could represent some kind of category, product or department, the y-axis would be revenue, user count or some kind of volume and finally the x-axis would be time.
 
-![png](/images/Tableau/bars_clean.png)
+<img src="/images/Tableau/bars_clean.png" alt="Stacked Bar Charts" class="fit image">
 
 ## Area charts
 
-Area charts can be prefered visually in stead of bar charts.
+Area charts can be preferred visually instead of bar charts.
 
-![png](/images/Tableau/area_clean.png)
+<img src="/images/Tableau/area_clean.png" alt="Area Chart" class="fit image">
 
-![png](/images/Tableau/area_100_clean.png)
-
+<img src="/images/Tableau/area_100_clean.png" alt="100% Area Chart" class="fit image">
 
 This would give us the actual numbers, which are important, but the next chart would give us a quick understanding of the share total.
-So below the colors and x-axis are still representing the same as above but the y-axis is now percentage alwas adding up to 100%. So y-axis would always be from 0% to 100%.
+So below the colors and x-axis are still representing the same as above but the y-axis is now percentage always adding up to 100%. So y-axis would always be from 0% to 100%.
 
-![png](/images/Tableau/100.png)
+<img src="/images/Tableau/100.png" alt="Percentage Area Chart" class="fit image">
 
 ## Custom timeframe filter
 
@@ -40,11 +39,10 @@ The relative period means it just means it will show data from a certain point i
 The custom period simply allows the user to filter the data between two points in time. From 1. januar 2021 to 31. of december 2021 for example.
 Lastly, "Show data as" will aggregate the data so each bar represent a day, week or month.
 
-![png](/images/Tableau/Timeframe.png)
+<img src="/images/Tableau/Timeframe.png" alt="Custom Timeframe Filter" class="fit image">
 
 ## Filters
 
-Filters are a good way of giving the user of the dashboards some autonomy to dive deeper into the data. You can make mutliple choice, single choice, sliders etc.
+Filters are a good way of giving the user of the dashboards some autonomy to dive deeper into the data. You can make multiple choice, single choice, sliders etc.
 
-![png](/images/Tableau/Timeframe.png)
-
+<img src="/images/Tableau/Timeframe.png" alt="Filters" class="fit image">
