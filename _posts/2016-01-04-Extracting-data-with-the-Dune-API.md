@@ -23,7 +23,7 @@ id_txs as (
     select block_time as "timestamp", hash as tx_hash, 'Instadapp' as frontend
     from ethereum.transactions
     join instadapp_accounts on to = account
-    where block_time > from_unixtime(&#123;{day_limit}&#123;, 'UTC')
+    where block_time > from_unixtime({{day_limit}}, 'UTC')
     group by 1,2,3
 ),
 
@@ -32,21 +32,21 @@ id_txs as (
 ds_txs as (
     select evt_block_time as "timestamp", evt_tx_hash as tx_hash, 'Defisaver' as frontend
     from defisaver_ethereum.DefisaverLogger_evt_LogEvent
-    where evt_block_time > from_unixtime(&#123;{day_limit}&#123;, 'UTC')
+    where evt_block_time > from_unixtime({{day_limit}}, 'UTC')
     group by 1, 2, 3
     
     union all
     
     select evt_block_time as "timestamp", evt_tx_hash as tx_hash, 'Defisaver' as frontend
     from defisaver_ethereum.DefisaverLogger_evt_RecipeEvent
-    where evt_block_time > from_unixtime(&#123;{day_limit}&#123;, 'UTC')
+    where evt_block_time > from_unixtime({{day_limit}}, 'UTC')
     group by 1, 2, 3
     
     union all
     
     select evt_block_time as "timestamp", evt_tx_hash as tx_hash, 'Defisaver' as frontend
     from defisaver_ethereum.DefisaverLogger_evt_ActionDirectEvent
-    where evt_block_time > from_unixtime(&#123;{day_limit}&#123;, 'UTC')
+    where evt_block_time > from_unixtime({{day_limit}}, 'UTC')
     group by 1, 2, 3
 )
 
@@ -63,7 +63,7 @@ You can see I am using a parameter in the where statements to be able to filter 
 
 {% raw %}
 ```sql
-where evt_block_time > from_unixtime(&#123;{day_limit}&#123;, 'UTC')
+where evt_block_time > from_unixtime({{day_limit}}, 'UTC')
 ```
 {% endraw %}
 
