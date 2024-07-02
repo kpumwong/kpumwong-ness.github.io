@@ -1,6 +1,6 @@
 locale: "en-US"
 title: Portfolio - Kasper Birkelund # Title of your site
-url: "http://kasper-birkelund.github.io" # the base hostname & protocol for your site
+url: "http://kpumwong.github.io" # the base hostname & protocol for your site
 baseurl: "" # the subpath of your site, e.g. /blog/
 google_analytics_key: ""
 
