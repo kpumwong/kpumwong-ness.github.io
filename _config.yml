@@ -1,21 +1,21 @@
 locale: "en-US"
-title: Portfolio - Kasper Birkelund # Title of your site
+title: Portfolio - Kankanit Pumwong # Title of your site
 url: "http://kpumwong.github.io" # the base hostname & protocol for your site
 baseurl: "" # the subpath of your site, e.g. /blog/
 google_analytics_key: ""
 
 # Default description in social shares for the jekyll-seo-tag gem
 description: > # this means to ignore newlines until "baseurl:"
-  Data Science portfolio - Kasper Birkelund
+  Data Analyst portfolio - Kankanit Pumwong
 
 # Author details for the jekyll-seo-tag gem
 author:
-  name: Kasper Birkelund
-  email: kasper.s.birkelund@gmail.com
+  name: Kankanit Pumwong
+  email: kankanitpumwong@gmail.com
 
 # Social details for the jekyll-seo-tag gem
 social:
-  name: Kasper Birkelund
+  name: Kankanit Pumwong
   links:
 
 permalink: pretty
