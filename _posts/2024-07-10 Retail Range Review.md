@@ -60,5 +60,5 @@ The annual range review in retail is a strategic process where retailers evaluat
     ⋅⋅* Generate a product flag to flag low-performing or essential items based on consistency.
     ⋅⋅* Create product ranking based on sales performance and loyalty metrics for items that pass the consistency review.
     ⋅⋅* Calculate walk rate, expected sales loss, and percentage of sales switching to substitutes if delisted.
-⋅⋅* **Customer Insights:**  Recommended adjustments to the SKU mix to enhance overall category performance.
+⋅⋅* **Customer Insights:**  Recommended adjustments to the product mix to enhance overall category performance.
 ⋅⋅* **Strategic Recommendations:**  Combining this with CDT results helps review items in the same cluster, leading to strategic decisions on which products to keep, discontinue, introduce, or promote for assortment optimization.
