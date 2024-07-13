@@ -1,10 +1,12 @@
 ---
 layout: post
-title: Extracting data from a GraphQL endpoint
+title: Automate Excel Reports with Python - Handling Different Configurations
 ---
 
-In this example I will be extracting data from a GraphQL endpoint.
-Also, I will show the use of asyncronous execution, enabling the code to wait for the API server before continuing. Lastly, the code will show how I am only fetching only the newest data since the last run and appending this to the database.
+In this chapter, I will demonstrate how to use Python to automate multiple Excel reports based on different configurations. This approach ensures efficiency and consistency when tailoring reports to meet the specific requirements of different clients.
+
+### Example Scenario
+Imagine you have created a base report in Excel. This report needs to be shared with five different clients, each requiring minor adjustments to the data structure. The Python code provided below streamlines this process, allowing you to generate all necessary reports with a single execution.
 
 ## Setup
 
