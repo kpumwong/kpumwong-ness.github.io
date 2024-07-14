@@ -25,11 +25,10 @@ Client C | 3.84 | 1.10 | Y |  |
 
 Set up an SQL code and export the data by Client Name in separate file. Assumming you have table called DATA_ALL that combines data for every client, here is the example of code to export all data files by client at the same time.
 
-```bash
 
+```bash
 -- Connect to the database
 ybsql -h <host> -d <database> -U <username>
-
 ```
 
 * &lt;host&gt;: Replace with your database host.
@@ -37,98 +36,11 @@ ybsql -h <host> -d <database> -U <username>
 * &lt;username&gt;: Replace with your username.
 
 ```bash
---CLIENT A EXPORT
-\copy (SELECT   CHANNEL
-                , PRODUCT_ID
-                , PRODUCT_NAME
-                , SALES
-                , UNITS
-    FROM        <schema>.DATA_ALL
-    WHERE       CLIENT_NAME = 'Client A' -- Client A 
-    ORDER BY    1,2,3) 
-    to '<path_to_output>/Client A_DATA.csv' WITH (
-    FORMAT CSV, 
-    HEADER TRUE, 
-    DELIMITER ',', 
-    ENCODING 'UTF-8'
-);
-```
-
-```bash
---CLIENT B EXPORT
-\copy (SELECT   CHANNEL
-                , PRODUCT_ID
-                , PRODUCT_NAME
-                , SALES
-                , UNITS
-    FROM        <schema>.DATA_ALL
-    WHERE       CLIENT_NAME = 'Client B' -- Client B
-    ORDER BY    1,2,3) 
-    to '<path_to_output>/Client B_DATA.csv' WITH (
-    FORMAT CSV, 
-    HEADER TRUE, 
-    DELIMITER ',', 
-    ENCODING 'UTF-8'
-);
-
-```
-
-* &lt;schema&gt;: Replace with your schema name.
-* &lt;path_to_output&gt;: Replace with your output file path.
-
-```bash
--- Connect to the database
-ybsql -h <host> -d <database> -U <username>
-
-```
-
-* &lt;host&gt;: Replace with your database host.
-* &lt;database&gt;: Replace with your database name.
-* &lt;username&gt;: Replace with your username.
-
-```bash
-<div style="overflow-x: auto;">
-<pre>
-<code>
 \copy (SELECT CHANNEL, PRODUCT_ID, PRODUCT_NAME, SALES, UNITS FROM        <schema>.DATA_ALL WHERE CLIENT_NAME = 'Client A' ORDER BY 1,2,3) to '<path_to_output>/Client A_DATA.csv' WITH ( FORMAT CSV,HEADER TRUE,DELIMITER ',', ENCODING 'UTF-8');
-</code>
-</pre>
-</div>
 ```
 
 ```bash
-<div style="overflow-x: auto;">
-<pre>
-<code>
 \copy (SELECT CHANNEL, PRODUCT_ID, PRODUCT_NAME, SALES, UNITS FROM        <schema>.DATA_ALL WHERE CLIENT_NAME = 'Client B' ORDER BY 1,2,3) to '<path_to_output>/Client B_DATA.csv' WITH ( FORMAT CSV,HEADER TRUE,DELIMITER ',', ENCODING 'UTF-8');
-</code>
-</pre>
-</div>
-```
-* &lt;schema&gt;: Replace with your schema name.
-* &lt;path_to_output&gt;: Replace with your output file path.
-
-
-```bash
--- Connect to the database
-ybsql -h <host> -d <database> -U <username>
-
-```
-
-* &lt;host&gt;: Replace with your database host.
-* &lt;database&gt;: Replace with your database name.
-* &lt;username&gt;: Replace with your username.
-
-```bash
-
-\copy (SELECT CHANNEL, PRODUCT_ID, PRODUCT_NAME, SALES, UNITS FROM        <schema>.DATA_ALL WHERE CLIENT_NAME = 'Client A' ORDER BY 1,2,3) to '<path_to_output>/Client A_DATA.csv' WITH ( FORMAT CSV,HEADER TRUE,DELIMITER ',', ENCODING 'UTF-8');
-
-```
-
-```bash
-
-\copy (SELECT CHANNEL, PRODUCT_ID, PRODUCT_NAME, SALES, UNITS FROM        <schema>.DATA_ALL WHERE CLIENT_NAME = 'Client B' ORDER BY 1,2,3) to '<path_to_output>/Client B_DATA.csv' WITH ( FORMAT CSV,HEADER TRUE,DELIMITER ',', ENCODING 'UTF-8');
-
 ```
 * &lt;schema&gt;: Replace with your schema name.
 * &lt;path_to_output&gt;: Replace with your output file path.
