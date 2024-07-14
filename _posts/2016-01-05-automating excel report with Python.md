@@ -109,6 +109,31 @@ ybsql -h <host> -d <database> -U <username>
 * &lt;path_to_output&gt;: Replace with your output file path.
 
 
+```bash
+-- Connect to the database
+ybsql -h <host> -d <database> -U <username>
+
+```
+
+* &lt;host&gt;: Replace with your database host.
+* &lt;database&gt;: Replace with your database name.
+* &lt;username&gt;: Replace with your username.
+
+```bash
+
+\copy (SELECT CHANNEL, PRODUCT_ID, PRODUCT_NAME, SALES, UNITS FROM        <schema>.DATA_ALL WHERE CLIENT_NAME = 'Client A' ORDER BY 1,2,3) to '<path_to_output>/Client A_DATA.csv' WITH ( FORMAT CSV,HEADER TRUE,DELIMITER ',', ENCODING 'UTF-8');
+
+```
+
+```bash
+
+\copy (SELECT CHANNEL, PRODUCT_ID, PRODUCT_NAME, SALES, UNITS FROM        <schema>.DATA_ALL WHERE CLIENT_NAME = 'Client B' ORDER BY 1,2,3) to '<path_to_output>/Client B_DATA.csv' WITH ( FORMAT CSV,HEADER TRUE,DELIMITER ',', ENCODING 'UTF-8');
+
+```
+* &lt;schema&gt;: Replace with your schema name.
+* &lt;path_to_output&gt;: Replace with your output file path.
+
+
 Export the file in csv based by each client, 
 1. Create folder 'Data File' in your preferred path
 2. Make sure to save the file as {Client Name}_DATA.csv all files into the same folder
