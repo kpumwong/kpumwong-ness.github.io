@@ -32,9 +32,9 @@ ybsql -h <host> -d <database> -U <username>
 
 ```
 
-<host>: Replace with your database host.
-<database>: Replace with your database name.
-<username>: Replace with your username.
+⋅⋅*  <host>: Replace with your database host.
+⋅⋅*  <database>: Replace with your database name.
+⋅⋅*  <username>: Replace with your username.
 
 ```bash
 --CLIENT A EXPORT
