@@ -32,7 +32,7 @@ ybsql -h <host> -d <database> -U <username>
 
 ```
 
-* `<host>`: Replace with your database host.
+* &lt;host&gt;: Replace with your database host.
 * `<database>`: Replace with your database name.
 * `<username>`: Replace with your username.
 
