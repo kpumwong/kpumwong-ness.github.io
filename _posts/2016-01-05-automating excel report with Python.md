@@ -33,8 +33,8 @@ ybsql -h <host> -d <database> -U <username>
 ```
 
 * &lt;host&gt;: Replace with your database host.
-* `<database>`: Replace with your database name.
-* `<username>`: Replace with your username.
+* &lt;database&gt;: Replace with your database name.
+* &lt;username&gt;: Replace with your username.
 
 ```bash
 --CLIENT A EXPORT
@@ -73,8 +73,8 @@ ybsql -h <host> -d <database> -U <username>
 
 ```
 
-* <schema>: Replace with your schema name.
-* <path_to_output>: Replace with your output file path.
+* &lt;schema&gt;: Replace with your schema name.
+* &lt;path_to_output&gt;: Replace with your output file path.
 
 ```bash
 -- Connect to the database
@@ -82,9 +82,9 @@ ybsql -h <host> -d <database> -U <username>
 
 ```
 
-<host>: Replace with your database host.
-<database>: Replace with your database name.
-<username>: Replace with your username.
+* &lt;host&gt;: Replace with your database host.
+* &lt;database&gt;: Replace with your database name.
+* &lt;username&gt;: Replace with your username.
 
 ```bash
 <div style="overflow-x: auto;">
@@ -105,8 +105,8 @@ ybsql -h <host> -d <database> -U <username>
 </pre>
 </div>
 ```
-<schema>: Replace with your schema name.
-<path_to_output>: Replace with your output file path.
+* &lt;schema&gt;: Replace with your schema name.
+* &lt;path_to_output&gt;: Replace with your output file path.
 
 
 Export the file in csv based by each client, 
