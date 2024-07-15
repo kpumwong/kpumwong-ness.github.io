@@ -34,7 +34,7 @@ Create a blank Excel template named **Template.xlsx** that includes all five she
 
 Here is a screenshot of the sample report: 
 
-<img src="/images/Python automate/Cover.png" alt="Cover" class="fit image" width="200" height="150">
+<img src="/images/Python automate/Cover.png" alt="Cover" width="200" height="150">
 
 ### Step 2 : Setup a master file
 
