@@ -42,18 +42,19 @@ Create a blank Excel template named **Template.xlsx** with all five sheets as sh
 Create a master file contains data specification for each client. 
 
 In this example, the master file contains client name, logo dimensions, and channel names (Total, Online, Offline).
-
 file name : Master_File.csv
 
 Client Name  | Category Name | Logo Width (Pixels) | Logo Height (Pixels) | Online Channel | Offline Channel | 
 --- | --- | --- | --- | --- | ---
 Client A | Soft Drinks | 288 | 115 | Y | Y
 Client B | Fruits | 395 | 190 |  | Y
+Client C | HBA | 100 | 50 | Y | 
+Client D | Tea | 120 | 60 | Y | Y
 
 
 ## Step 2 : Setup SQL Code and Export Raw Data
 
-Export data for each client in .csv using SQL. Assume you have a table called 'DATA_ALL' that combines data for all clients.
+Export data for each client in .csv using SQL. Assume you have a table called 'DATA_ALL' that combines data for all clients and all chanels that they subscribe to.
 
 Use the following sample code to export data for each client through the command prompt.
 
@@ -121,7 +122,7 @@ Total | P004 | NAME 4 | $800 | 80
 Total | P005 | NAME 5 | $100 | 70 -->
 
 
-### Step 2 : Manage Brand Logo
+### Step 3 : Manage Brand Logo
 
 1. Create a folder named 'Brand Logo' in your preferred path
 2. Save each client's logo in this folder, using the structure **{Client Name}_LOGO.png**.
@@ -132,7 +133,7 @@ Example Logos:
 * Client B_LOGO.png
 
 
-
+### Step 4 : Use Python to cut and paste data into the Excel template based on the Channel tab.
 
 
 
