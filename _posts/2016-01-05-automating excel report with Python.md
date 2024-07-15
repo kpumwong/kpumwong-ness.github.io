@@ -10,14 +10,18 @@ Imagine you have created a base report in Excel that needs to be shared with fiv
 
 In this example, the base report contains **three standard sheets**:
 
-* _Cover Page_ : Each client shows _different logo_, and _size_.
-* _Glossary_ : Same across all clients.
-* _Total Store_ : All clients has this sheet.
+<img src="/images/Python automate/Cover.png" alt="Cover" width="300" height="200">  <img src="/images/Python automate/Glossary.png" alt="Glossary" width="300" height="200">  <img src="/images/Python automate/tot.png" alt="tot" width="300" height="200">  
+
+* **Cover Page** : Each client shows **different logo**, and **size**.
+* **Glossary** : Same across all clients.
+* **Total Store** : All clients has this sheet.
      
 Additionally, there are **two optional sheets** based on the subscription:
 
-* _Online_ : Only for clients subscribed to the online data.
-* _Offline_ : Only for clients subscribed to the offline data.
+<img src="/images/Python automate/Online.png" alt="Online" width="300" height="200">  <img src="/images/Python automate/Offline.png" alt="Offline" width="300" height="200">
+
+* **Online** : Only for clients subscribed to the online data.
+* **Offline** : Only for clients subscribed to the offline data.
 
 Summary of steps
 
@@ -30,11 +34,7 @@ Summary of steps
 
 ### Step 1 : Create a blank Excel template for automation.
 
-Create a blank Excel template named **Template.xlsx** that includes all five sheets and data formatting.
-
-Here is a screenshot of the sample report: 
-
-<img src="/images/Python automate/Cover.png" alt="Cover" width="300" height="200">  <img src="/images/Python automate/Glossary.png" alt="Glossary" width="300" height="200">  <img src="/images/Python automate/tot.png" alt="tot" width="300" height="200">  <img src="/images/Python automate/Online.png" alt="Online" width="300" height="200">  <img src="/images/Python automate/Offline.png" alt="Offline" width="300" height="200">
+Create a blank Excel template named **Template.xlsx** with all five sheets and necessary formatting.
 
 ### Step 2 : Setup a master file
 
