@@ -6,7 +6,7 @@ title: Automate Excel Reports with SQL & Python - Handling Different Configurati
 In this chapter, I will demonstrate how to use Python to automate multiple Excel reports based on different configurations. This approach ensures efficiency and consistency when tailoring reports to meet the specific requirements of different clients.
 
 ## Example Scenario
-Imagine you have created a base report in Excel that needs to be shared with five different clients, each requiring minor adjustments to the data structure. The framework provided below streamlines this process, allowing you to generate muliple reports with different data specifications in a single execution.
+Imagine you have created a base report in Excel that needs to be shared with different clients, each requiring minor adjustments to the data structure. The framework provided below streamlines this process, allowing you to generate muliple reports with different data specifications in a single execution.
 
 In this example, the base report contains **three standard sheets**:
 
@@ -14,7 +14,7 @@ In this example, the base report contains **three standard sheets**:
 
 * **Cover Page** : Each client shows **different logo**, and **size**.
 * **Glossary** : Same across all clients.
-* **Total Store** : All clients has this sheet.
+* **Total Store** : All clients have this sheet.
      
 Additionally, there are **two optional sheets** based on the subscription:
 
@@ -23,18 +23,19 @@ Additionally, there are **two optional sheets** based on the subscription:
 * **Online** : Only for clients subscribed to the online data.
 * **Offline** : Only for clients subscribed to the offline data.
 
-Summary of steps
+**Summary of steps**
 
-1. Create a blank Excel template with all necessary data formatting for automation.
-2. Set up a master file with data specifications for each client.
-3. Write SQL code to export raw data for each client in separate .csv files, all saved in the same folder and follow the same naming structure.
-4. Save all brand logos in the same folder and follow the same naming structure.
-5. Use Python to automate running multiple reports in one execution based on the configuration set in the master file.
+1. Create **a blank Excel template** with all necessary data formatting for automation.
+2. Set up **a master file** with data specifications for each client.
+3. Write SQL code to **export raw data** for each client in separate .csv files, all saved in the same folder and follow the same naming structure.
+4. Save all **brand logos** in the same folder and follow the same naming structure.
+5. Use **Python to automate running multiple reports** in one execution based on the configuration set in the master file.
 
+---
 
 ### Step 1 : Create a blank Excel template for automation.
 
-Create a blank Excel template named **Template.xlsx** with all five sheets and necessary formatting.
+Create a blank Excel template named **Template.xlsx** with all five sheets as shown above and keep all necessary formatting.
 
 ### Step 2 : Setup a master file
 
