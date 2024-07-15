@@ -8,7 +8,7 @@ In this chapter, I will demonstrate how to use Python to automate multiple Excel
 ## Example Scenario
 Imagine you have created a base report in Excel that needs to be shared with different clients, each requiring minor adjustments to the data structure. The framework provided below streamlines this process, allowing you to generate muliple reports with different data specifications in a single execution.
 
-In this example, the base report contains **three standard sheets**:
+In this example, the base report contains __three standard sheets__:
 
 <img src="/images/Python automate/Cover.png" alt="Cover" width="300" height="200">  <img src="/images/Python automate/Glossary.png" alt="Glossary" width="300" height="200">  <img src="/images/Python automate/tot.png" alt="tot" width="300" height="200">  
 
