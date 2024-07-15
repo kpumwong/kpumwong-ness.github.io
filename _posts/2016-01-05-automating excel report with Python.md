@@ -48,7 +48,6 @@ Client Name  | Category Name | Logo Width (Pixels) | Logo Height (Pixels) | Onli
 --- | --- | --- | --- | --- | ---
 Client A | Soft Drinks | 288 | 115 | Y | Y
 Client B | Fruits | 395 | 190 |  | Y
-<!-- Client C | 3.84 | 1.10 |  |  -->
 
 
 ## Step 2 : Setup SQL Code and Export Raw Data
