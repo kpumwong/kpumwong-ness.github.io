@@ -34,7 +34,7 @@ Create a blank Excel template named **Template.xlsx** that includes all five she
 
 Here is a screenshot of the sample report: 
 
-<img src="/images/Python automate/Cover.png" alt="Cover" width="300" height="200">  <img src="/images/Python automate/tot.png" alt="tot" width="300" height="200">  <img src="/images/Python automate/Online.png" alt="Online" width="300" height="200">  <img src="/images/Python automate/Offline.png" alt="Offline" width="300" height="200">
+<img src="/images/Python automate/Cover.png" alt="Cover" width="300" height="200">  <img src="/images/Python automate/Glossary.png" alt="Glossary" width="300" height="200">  <img src="/images/Python automate/tot.png" alt="tot" width="300" height="200">  <img src="/images/Python automate/Online.png" alt="Online" width="300" height="200">  <img src="/images/Python automate/Offline.png" alt="Offline" width="300" height="200">
 
 ### Step 2 : Setup a master file
 
