@@ -12,9 +12,9 @@ In this example, the base report contains __three standard sheets__:
 
 <img src="/images/Python automate/Cover.png" alt="Cover" width="300" height="200">  <img src="/images/Python automate/Glossary.png" alt="Glossary" width="300" height="200">  <img src="/images/Python automate/tot.png" alt="tot" width="300" height="200">  
 
-* **Cover Page** : Each client shows **different logo**, and **size**.
+* **Cover Page** : Each client has a **different brand logo** and **size**. The **category name** on the cover also varies based on the subscription.
 * **Glossary** : Same across all clients.
-* **Total Store** : All clients have this sheet.
+* **Total Store** : Every client subscribed total store data.
      
 Additionally, there are **two optional sheets** based on the subscription:
 
@@ -23,12 +23,12 @@ Additionally, there are **two optional sheets** based on the subscription:
 * **Online** : Only for clients subscribed to the online data.
 * **Offline** : Only for clients subscribed to the offline data.
 
-**Summary of steps**
+**Process Summary**
 
-1. Create **a blank Excel template** with all necessary data formatting for automation.
-2. Set up **a master file** with data specifications for each client.
-3. Write SQL code to **export raw data** for each client in separate .csv files, all saved in the same folder and follow the same naming structure.
-4. Save all **brand logos** in the same folder and follow the same naming structure.
+1. Create an **Excel template** with all the sheets mentioned above, leaving the data areas blank.
+2. Set up **a master file** contains data specifications for each client.
+3. Write SQL code to **export raw data** for each client separately, all saved in the same folder and follow the naming structure as {Client Name}_DATA.csv.
+4. Save all **brand logos** in the same folder and follow the naming structure as {Client Name}_LOGO.png.
 5. Use **Python to automate running multiple reports** in one execution based on the configuration set in the master file.
 
 ---
@@ -41,7 +41,7 @@ Create a blank Excel template named **Template.xlsx** with all five sheets as sh
 
 Create a master file contains data specification for each client. 
 
-In this example, the master file contains client name, logo dimensions, and channel names (Total, Online, Offline).
+In this example, the master file contains client name, logo dimensions, and channel flag.
 file name : Master_File.csv
 
 Client Name  | Category Name | Logo Width (Pixels) | Logo Height (Pixels) | Online Channel | Offline Channel | 
@@ -54,7 +54,7 @@ Client D | Tea | 120 | 60 | Y | Y
 
 ## Step 2 : Setup SQL Code and Export Raw Data
 
-Export data for each client in .csv using SQL. Assume you have a table called 'DATA_ALL' that combines data for all clients and all chanels that they subscribe to.
+Export data for each client in .csv using Yellowbrick. Assume you have a table called 'DATA_ALL' that combines data for all clients and all channels that they subscribed to.
 
 Use the following sample code to export data for each client through the command prompt.
 
@@ -77,7 +77,7 @@ ybsql -h <host> -d <database> -U <username>
 * &lt;schema&gt;: Replace with your schema name.
 * &lt;path_to_output&gt;: Replace with your output file path.
 
-Ensure the file name structure is **{Client Name}_DATA.csv** and save all files in the same folder, naming as 'Data File'.
+Ensure the file name structure is **{Client Name}_DATA.csv** and save all files in the same folder. The folder can be named as 'Data File'.
 
 Example 1 :Client A
 
