@@ -156,9 +156,9 @@ output_folder = '<file location>/Output'  # Replace with your output folder path
 
 create the path for Template file
 ```python
-template_path = '<file location>/Template.xlsx'  # Replace with your output folder path
+template_path = '<file location>/Template.xlsx'  # Replace with your template folder path
 ```
-Create the file path that links to the data file of each client and filter only 'Total' channel.
+Generate the path for each client's data file and filter by the channel value.
 
 ```python
 def create_df_data_total(client_name, filter_value):
@@ -195,7 +195,7 @@ def create_df_data_offline(client_name, filter_value):
 
 ```
 
-Define function to fill in the cover page with and category name and brand logo
+Next, define a function to populate the cover page with the category name and brand logo.
 
 ```python
 def fill_cover_page(master_file_info):
@@ -251,31 +251,38 @@ for index, row in cpg_info_df.iterrows():
     online = master_file_info[4]
     offline = master_file_info[5]
     
+    #Populate the cover page base on category name and brand logo
     output_file_path = fill_cover_page(master_file_info)
     
+    #Create dataframe contains data for 'Total' channel and drop 'Channel' column
     df_data_total = create_df_data_total(client_name, filter_value='Total')
     df_data_total = df_data_total.drop(columns=['Channel'])
+
     #Remove Header and convert to list
     data_total = df_data_total.reset_index(drop=True).values.tolist()
     
+    #If Online Flag = 'Y', create dataframe contains data for 'Online' channel and drop 'Channel' column
     if online == 'Y' :
         df_data_online = create_df_data_online(client_name, filter_value='Online')
         df_data_online = df_data_online.drop(columns=['Channel'])
         #Remove Header and convert to list
         data_online = df_data_online.reset_index(drop=True).values.tolist()
     
+    #If Offline Flag = 'Y', create dataframe contains data for 'Offline' channel and drop 'Channel' column
     if offline == 'Y' :
         df_data_offline = create_df_data_offline(client_name, filter_value='Offline')
         df_data_offline = df_data_offline.drop(columns=['Channel'])
         #Remove Header and convert to list
         data_offline = df_data_offline.reset_index(drop=True).values.tolist()
         
+    #Open the output file
     wb = xl.Book(output_file_path)
     
+    #Paste data into 'Total Store' sheet
     ws = wb.sheets[f'Total Store']
     ws.range(f"A4").value = data_total
     
-    
+    #If both Online and Offline flag = 'Y', paste data into both sheets
     if online == 'Y' and offline == 'Y':
         ws1 = wb.sheets[f'Online']
         ws1.range(f"A4").value = data_online
@@ -283,16 +290,19 @@ for index, row in cpg_info_df.iterrows():
         ws2 = wb.sheets[f'Offline']
         ws2.range(f"A4").value = data_offline
     
+    #If only Online flag = 'Y', paste data into sheet 'Online' and drop 'Offline' sheet
     if online == 'Y' and offline != 'Y':
         ws = wb.sheets[f'Online']
         ws.range(f"A4").value = data_online
         wb.sheets[f'Offline'].delete()
-        
+
+    #If only Offline flag = 'Y', paste data into sheet 'Offline' and drop 'Online' sheet 
     if online != 'Y' and offline == 'Y':
         ws = wb.sheets[f'Offline']
         ws.range(f"A4").value = data_offline
         wb.sheets[f'Online'].delete()
     
+    #If none of Online or Offline flag = 'Y', drop both of the sheets.
     if online != 'Y' and offline != 'Y':
         wb.sheets[f'Online'].delete()
         wb.sheets[f'Offline'].delete()
@@ -304,4 +314,4 @@ for index, row in cpg_info_df.iterrows():
     wb.save()
     wb.close()   
 
-    ```
+```
