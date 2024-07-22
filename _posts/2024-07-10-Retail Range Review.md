@@ -30,7 +30,7 @@ There are three main parts where I supported this project:
 <img src="/images/Cate Overview/SOV.png" alt="SOV" class="fit image">
 
 - **Customer Insights:** Identify the key factors driving sales growth or decline for the focus timeframe, along with benchmark comparison.
-- **Strategic Recommendations:** Provide top-level insights and opportunities to improve category performance which serves as a foundation for further analysis and strategic decision-making.
+- **Strategic Recommendations:** Provide opportunities to improve category performance which serves as a foundation for further analysis and strategic decision-making.
 
 ### **Customer Decision Tree (CDT) Analysis**
 
@@ -39,17 +39,17 @@ There are three main parts where I supported this project:
     - Identify the category to focus.
     - Establish which products in the category fulfill the same need by calculating distance scores which show how closely each pair of the products are connected.
     - Perform clustering based on a distance score between the products.
+    - Validate clusters and identify need states by applying business logic to the cluster solutions.
 
 *Dendogram as a result from CDT*
 <img src="/images/Cate Overview/CDT.png" alt="CDT" class="fit image">
 
-    - Validate clusters and identify need states by applying business logic to the cluster solutions.
 
 *Example of CDT Interpretation*
 <img src="/images/Cate Overview/CDT interpret.png" alt="CDT interpret" class="fit image">
 
 - **Customer Insights:** Identify key decision drivers and patterns in customer behavior using the CDT framework.
-- **Strategic Recommendations:** Combining with category overview to provide actionable insights and recommendations by applying CDT insights to Blockogram to optimize product adjacencies and aisle flow. This helps enhance category performance and customer experience.
+- **Strategic Recommendations:** Combining with category overview to provide actionable recommendations by applying CDT insights to Blockogram to optimize product adjacencies and aisle flow. This helps enhance category performance and customer experience.
 
 ### **Product Recommendation**
 
