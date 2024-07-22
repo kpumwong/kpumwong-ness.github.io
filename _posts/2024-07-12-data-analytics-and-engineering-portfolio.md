@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Data Analytics Portfolio
+title: Data Analyst Portfolio
 ---
 <!--<img src="/images/fulls/01.jpg" class="fit image">-->
 Welcome to my portfolio!
