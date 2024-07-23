@@ -59,23 +59,25 @@ When automating Excel reports, you may need to apply specific data formats. The 
 Here, we demonstrate key features of xlsxwriter to improve your Excel reports' presentation and usability.
 
 ### Key Data Formatting Features of xlsxwriter
-⋅⋅* Text Formatting
-⋅⋅* Number Formatting
-⋅⋅* Color Formatting
-⋅⋅* Alignment Formatting
-⋅⋅* Border Formatting
-⋅⋅* Combining Multiple Formats
-⋅⋅* Data Bars for Visualization
-⋅⋅* Applying a 3-Scale Color Based on Value
-⋅⋅* Setting Tab Color
-⋅⋅* Freezing Panes
-⋅⋅* Applying Autofilters
+- Text Formatting
+- Number Formatting
+- Color Formatting
+- Alignment Formatting
+- Border Formatting
+- Combining Multiple Formats
+- Data Bars for Visualization
+- Applying a 3-Scale Color Based on Value
+- Setting Tab Color
+- Freezing Panes
+- Applying Autofilters
 
 
 An example below shows how to apply these key features to a summary of sales and units data by Division, Department, and Category in an Excel file. 
 
-This image illustrates the final output.
+This image shows the final output.
 <img src="/images/Python automate/summary.png" alt="summary" class="fit image">
+
+First, start with importing Python libraries and defining a dataframe
 
 ```python
 
@@ -117,7 +119,9 @@ worksheet = writer.sheets['SUMMARY']
 ### Text Formatting
 
 'bold_format': Bold text
+
 'italic_format': Italic text
+
 'underline_format': Underlined text
 
 ```python
@@ -135,6 +139,7 @@ worksheet.set_column('j:j', 15, underline_format)
 ### 'Number Formatting' 
 
 'currency_format': Currency format with the Euro symbol
+
 'percentage_format': Percentage format with one decimal place
 
 ```python
@@ -150,7 +155,9 @@ worksheet.set_column('I:I', 18, percentage_format)
 ### Color Formatting
 
 'red_format': Red font color 
+
 'pink_bg_format': Pink background
+
 'blue_bg_format': Blue background
 
 ```python
@@ -195,6 +202,7 @@ worksheet.set_column('H:H', 18, center_format)
 ### Border Formatting
 
 'thick_border_format': Thick border on all sides
+
 'medium_border_format': Medium border on all sides
 
 ```python
