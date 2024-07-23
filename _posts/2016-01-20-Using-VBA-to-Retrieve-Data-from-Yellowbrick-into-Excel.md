@@ -3,7 +3,8 @@ layout: post
 title: Using VBA to Retrieve Data from Yellowbrick into Excel
 ---
 
-Provide a simple example of setting up an Excel template and VBA code to populate data from Yellowbrick. The goal is to enable users without database knowledge to export specific data from a database into an Excel file.
+Provide a simple example of setting up an Excel template and VBA code to automatically import data from Yellowbrick. This will allow users with no database experience to easily export specific data into the Excel template.
+
 
 ## Step 1 : Create the "INPUT" Sheet:
 
@@ -17,7 +18,7 @@ Here is an example of how to set up the 'INPUT' sheet:
 
 ## Step 2: Set Up Connections
 
-Here is the code to define the function `oConn()` to establish and return a database connection.
+Here is the code to define the function &lt;oConn()&gt; to establish and return a database connection.
 
 ```vba
 ' Function to establish and return a database connection
